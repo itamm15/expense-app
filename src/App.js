@@ -1,6 +1,8 @@
+import NewExpenseForm from "./_forms/NewExpenseForm";
 function App() {
+
   return (
-    <p>Expense-app</p>
+    <NewExpenseForm />
   );
 }
 
