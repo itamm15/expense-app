@@ -7,7 +7,10 @@ function App() {
   return (
     <>
       <NavBar setIsModalOpen={setIsModalOpen} />
-      <NewExpenseForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <NewExpenseForm
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
     </>
   );
 }
