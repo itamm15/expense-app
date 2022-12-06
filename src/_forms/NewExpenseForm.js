@@ -1,32 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 
+const styleModal = {
+  content: {
+    margin: 'auto',
+    width: '400px',
+    height: '375px',
+  },
+}
+
+const styleSubmitAndCloseButton = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-evenly',
+  marginTop: '20px'
+}
+
 const NewExpenseForm = ({ isModalOpen, setIsModalOpen }) => {
+  // State of values from form
+  const [expenseAmount, setExepnseAmount] = useState(0);
+  const [expenseDescription, setExpenseDescription] = useState('Provide the description!');
+  const [expenseDate, setExpenseDate] = useState(new Date().toISOString().slice(0, 10));
+  const createExpense = (event) => {
+    event.preventDefault();
+    setIsModalOpen(false);
+    console.log(event.target, "what does it return?");
+  }
 
   return (
-    <ReactModal isOpen={isModalOpen}>
-      <div className="form-group">
-        <form>
-          <label key='Amount' className='form-control'>Amount
-          <input
-            type='number'
+    <ReactModal isOpen={isModalOpen} style={styleModal} ariaHideApp={false}>
+      <h3 style={{ textAlign: 'center' }}>Create income/outcome</h3>
+      <form onSubmit={createExpense}>
+        <div className="form-group">
+          <label key='Amount'>Amount</label>
+            <input
+              type='number'
               name='expense-amount'
-              className='form-input'
+              className='form-control'
+              value={expenseAmount}
+              onChange={(event) => setExepnseAmount(event.target.value)}
             />
-          </label>
-          <label key='Description' className='form-control'>Description
+        </div>
+        <div className="form-group">
+          <label key='Description'>Description</label>
+            <input
+              type='text'
+              name='expense-description'
+              className='form-control'
+              placeholder={expenseDescription}
+              onChange={(event) => setExpenseDescription(event.target.value)}
+            />
+        </div>
+        <div className='form-group'>
+          <label key='Date'>Date</label>
           <input
-            type='text'
-            name='expense-description'
-            className='form-input'
-            />
-
-            <button type='submit'>Add to minuses</button>
-            <button type='submit'>Add to pluses</button>
-            <button onClick={() => setIsModalOpen(false)}>Close</button>
-          </label>
-        </form>
-      </div>
+            type='date'
+            name='expense-date'
+            className='form-control'
+            value={expenseDate}
+            onChange={(event) => setExpenseDate(event.target.value)}
+          />
+        </div>
+        <div style={styleSubmitAndCloseButton}>
+          <button type='submit' className='btn btn-primary'>Create</button>
+          <button className='btn btn-primary' onClick={() => setIsModalOpen(false)}>Close</button>
+        </div>
+      </form>
     </ReactModal>
   )
 }
