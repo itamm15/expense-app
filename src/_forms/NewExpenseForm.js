@@ -25,10 +25,18 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen }) => {
   const [expenseDate, setExpenseDate] = useState(
     new Date().toISOString().slice(0, 10)
   );
+
   const createExpense = (event) => {
     event.preventDefault();
     setIsModalOpen(false);
-    console.log(event.target, "what does it return?");
+
+
+    // 1. Gather all data and check the validity
+    // 2. Check, if there is already created folder for given year, (NOT => CREATE)
+
+
+    // 3. Check, if there is already created file with given month, (NOT => CREATE)
+    // 4. STORE DATA!
   };
 
   return (
