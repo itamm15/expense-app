@@ -1,6 +1,7 @@
 {
   "expenses": [
     {
+      "id": 1,
       "amount": 100,
       "description": "Dinner with my love",
       "type": "outgoing",

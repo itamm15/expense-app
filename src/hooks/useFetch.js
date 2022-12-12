@@ -27,6 +27,8 @@ const useFetch = (endpoint) => {
       abortController.abort();
     };
   }, [endpoint]);
+
+  return { data, isPending, error };
 };
 
 export default useFetch;
