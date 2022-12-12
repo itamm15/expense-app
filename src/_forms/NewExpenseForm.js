@@ -34,6 +34,13 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen }) => {
     // 1. Gather all data and check the validity
     // 2. Check, if there is already created folder for given year, (NOT => CREATE)
 
+    const dataToInsert = {
+      date: expenseDate,
+      amount: expenseAmount,
+      description: expenseDescription
+    }
+
+
 
     // 3. Check, if there is already created file with given month, (NOT => CREATE)
     // 4. STORE DATA!
