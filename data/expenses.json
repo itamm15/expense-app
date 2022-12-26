@@ -1,11 +1,1 @@
-{
-  "expenses": [
-    {
-      "id": 1,
-      "amount": 100,
-      "description": "Dinner with my love",
-      "type": "outgoing",
-      "date": "2022-10-10"
-    }
-  ]
-}
+{}

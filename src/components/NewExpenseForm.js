@@ -16,7 +16,7 @@ const styleSubmitAndCloseButton = {
   marginTop: "20px",
 };
 
-const NewExpenseForm = ({ isModalOpen, setIsModalOpen }) => {
+const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
   // State of values from form
   const [expenseAmount, setExepnseAmount] = useState(0);
   const [expenseDescription, setExpenseDescription] = useState(
@@ -26,27 +26,30 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen }) => {
     new Date().toISOString().slice(0, 10)
   );
 
-  const createExpense = (event) => {
+  const handleExpenseSubmit = (event) => {
     event.preventDefault();
     setIsModalOpen(false);
 
-    // 1. Gather all data and check the validity
-    // 2. Check, if there is already created folder for given year, (NOT => CREATE)
-
-    const dataToInsert = {
+    const expense = {
       date: expenseDate,
       amount: expenseAmount,
       description: expenseDescription,
+      expenseType: expenseType,
     };
 
-    // 3. Check, if there is already created file with given month, (NOT => CREATE)
-    // 4. STORE DATA!
+    fetch("http://localhost:3001/expenses", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(expense),
+    }).then((res) => {
+      console.log(res, "res");
+    });
   };
 
   return (
     <ReactModal isOpen={isModalOpen} style={styleModal} ariaHideApp={false}>
       <h3 style={{ textAlign: "center" }}>Create income/outcome</h3>
-      <form onSubmit={createExpense}>
+      <form onSubmit={handleExpenseSubmit}>
         <div className="form-group">
           <label key="Amount">Amount</label>
           <input
