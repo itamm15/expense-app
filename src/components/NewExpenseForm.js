@@ -17,7 +17,7 @@ const styleSubmitAndCloseButton = {
 };
 
 const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
-  // State of values from form
+
   const [expenseAmount, setExepnseAmount] = useState(0);
   const [expenseDescription, setExpenseDescription] = useState(
     "Provide the description!"
