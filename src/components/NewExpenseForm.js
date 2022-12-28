@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import currency from 'currency.js';
 import ReactModal from "react-modal";
 
 const styleModal = {
@@ -17,7 +18,6 @@ const styleSubmitAndCloseButton = {
 };
 
 const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
-
   const [expenseAmount, setExepnseAmount] = useState(0);
   const [expenseDescription, setExpenseDescription] = useState(
     "Provide the description!"
@@ -36,6 +36,8 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
       description: expenseDescription,
       expenseType: expenseType,
     };
+
+    console.log(JSON.stringify(expense), "expense");
 
     fetch("http://localhost:3001/expenses", {
       method: "POST",

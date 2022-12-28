@@ -1,7 +1,11 @@
-const ExpenseList = ({ data, isPending, error }) => {
+import useExpenses from "../hooks/useExpenses";
+
+const ExpenseList = () => {
+  const { expensesList, error, isLoading } = useExpenses();
   return (
     <>
-      {!isPending && (
+      {error && <h1>Could not fetch data, an error occurred.</h1>}
+      {!isLoading && (
         <table className="table">
           <thead>
             <tr>
@@ -13,8 +17,8 @@ const ExpenseList = ({ data, isPending, error }) => {
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.map(({ id, amount, description, type, date }) => (
+            {expensesList &&
+              expensesList.map(({ id, amount, description, type, date }) => (
                 <tr>
                   <th scope="row">{id}</th>
                   <th>{amount}</th>

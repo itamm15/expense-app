@@ -1,1 +1,46 @@
-{}
+{
+  "expenses": [
+    {
+      "date": "2022-12-26",
+      "amount": 0,
+      "description": "Provide the description!",
+      "expenseType": "outcome",
+      "id": 1
+    },
+    {
+      "date": "2022-12-26",
+      "amount": 0,
+      "description": "Provide the description!",
+      "expenseType": "outcome",
+      "id": 2
+    },
+    {
+      "date": "2022-12-26",
+      "amount": "123",
+      "description": "Provide the description!",
+      "expenseType": "outcome",
+      "id": 3
+    },
+    {
+      "date": "2022-12-26",
+      "amount": "012321",
+      "description": "1232",
+      "expenseType": "outcome",
+      "id": 4
+    },
+    {
+      "date": "2022-12-26",
+      "amount": 0,
+      "description": "Provide the description!",
+      "expenseType": "outcome",
+      "id": 5
+    },
+    {
+      "date": "2022-12-26",
+      "amount": "300",
+      "description": "Buty dla kobity",
+      "expenseType": "outcome",
+      "id": 6
+    }
+  ]
+}

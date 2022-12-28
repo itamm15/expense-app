@@ -1,15 +1,13 @@
 import NavBar from "./components/NavBar";
-import useFetch from "./hooks/useFetch";
 import ExpenseList from "./components/ExpenseList";
+import { ExpensesContextProvider } from "./hooks/useExpenses";
 
 function App() {
-  const { data, isPending, error } = useFetch("http://localhost:3001/expenses");
-
   return (
-    <>
+    <ExpensesContextProvider>
       <NavBar />
-      <ExpenseList data={data} isPending={isPending} error={error} />
-    </>
+      <ExpenseList />
+    </ExpensesContextProvider>
   );
 }
 
