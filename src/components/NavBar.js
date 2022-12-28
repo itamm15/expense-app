@@ -1,9 +1,7 @@
 import { useState } from "react";
-//import useExpenses from "../hooks/useExpenses";
 import NewExpenseForm from "./NewExpenseForm";
 
 const NavBar = ({ searchedDescription, setSearchedDescription }) => {
-  // const { expensesList, setExpensesList } = useExpenses();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [expenseType, setExpenseType] = useState("income");
   const createExpense = (event) => {
