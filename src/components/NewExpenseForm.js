@@ -19,7 +19,6 @@ const styleSubmitAndCloseButton = {
 };
 
 const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
-  console.log(expenseType);
   const { expensesList, setExpensesList } = useExpenses();
   const [expenseAmount, setExepnseAmount] = useState(0);
   const [expenseDescription, setExpenseDescription] = useState(
