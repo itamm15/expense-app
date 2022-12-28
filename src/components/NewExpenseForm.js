@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import currency from 'currency.js';
 import ReactModal from "react-modal";
+import useExpenses from "../hooks/useExpenses";
 
 const styleModal = {
   content: {
@@ -18,6 +19,7 @@ const styleSubmitAndCloseButton = {
 };
 
 const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
+  const { expensesList, setExpensesList } = useExpenses();
   const [expenseAmount, setExepnseAmount] = useState(0);
   const [expenseDescription, setExpenseDescription] = useState(
     "Provide the description!"
@@ -26,9 +28,8 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
     new Date().toISOString().slice(0, 10)
   );
 
-  const handleExpenseSubmit = (event) => {
+  async function handleExpenseSubmit(event) {
     event.preventDefault();
-    setIsModalOpen(false);
 
     const expense = {
       date: expenseDate,
@@ -37,21 +38,17 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
       expenseType: expenseType,
     };
 
-    console.log(JSON.stringify(expense), "expense");
-
-    fetch("http://localhost:3001/expenses", {
+    await fetch("http://localhost:3001/expenses", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(expense),
-    }).then((res) => {
-      console.log(res, "res");
-    });
-  };
+    }).then(() => setExpensesList([expense, ...expensesList]));
+  }
 
   return (
     <ReactModal isOpen={isModalOpen} style={styleModal} ariaHideApp={false}>
       <h3 style={{ textAlign: "center" }}>Create income/outcome</h3>
-      <form onSubmit={handleExpenseSubmit}>
+      <form>
         <div className="form-group">
           <label key="Amount">Amount</label>
           <input
@@ -83,10 +80,19 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
           />
         </div>
         <div style={styleSubmitAndCloseButton}>
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={async (event) => {
+              await handleExpenseSubmit(event).then(() =>
+                setIsModalOpen(false)
+              );
+            }}
+          >
             Create
           </button>
           <button
+            type="close"
             className="btn btn-primary"
             onClick={() => setIsModalOpen(false)}
           >

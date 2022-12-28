@@ -9,7 +9,6 @@ const ExpenseList = () => {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">Amount</th>
               <th scope="col">Description</th>
               <th scope="col">Date</th>
@@ -18,13 +17,12 @@ const ExpenseList = () => {
           </thead>
           <tbody>
             {expensesList &&
-              expensesList.map(({ id, amount, description, type, date }) => (
+              expensesList.map(({ amount, description, expenseType, date }) => (
                 <tr>
-                  <th scope="row">{id}</th>
-                  <th>{amount}</th>
+                  <th scope="row">{amount}</th>
                   <th>{description}</th>
                   <th>{date}</th>
-                  <th>{type}</th>
+                  <th>{expenseType}</th>
                 </tr>
               ))}
           </tbody>
