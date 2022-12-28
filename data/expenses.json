@@ -9,24 +9,10 @@
     },
     {
       "date": "2022-12-28",
-      "amount": "123",
+      "amount": "100",
       "description": "Provide the description!",
-      "expenseType": "outcome",
+      "expenseType": "income",
       "id": 2
-    },
-    {
-      "date": "2022-12-28",
-      "amount": 0,
-      "description": "Provide the description!",
-      "expenseType": "outcome",
-      "id": 3
-    },
-    {
-      "date": "2022-12-28",
-      "amount": 0,
-      "description": "Provide the description!",
-      "expenseType": "outcome",
-      "id": 4
     }
   ]
 }

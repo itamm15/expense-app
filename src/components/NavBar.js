@@ -3,7 +3,9 @@ import NewExpenseForm from "./NewExpenseForm";
 
 const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleChange = () => {
+  const [expenseType, setExpenseType] = useState("income");
+  const handleChange = (event) => {
+    setExpenseType(event.target.value);
     setIsModalOpen(true);
   };
 
@@ -26,25 +28,28 @@ const NavBar = () => {
         </form>
       </li>
       <li className="nav-item my-2" style={{ width: "10%" }}>
-        <button className="btn btn-warning" onClick={handleChange}>
+        <button
+          className="btn btn-warning"
+          value="income"
+          onClick={handleChange}
+        >
           Create income
-          <NewExpenseForm
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-            expenseType="income"
-          />
         </button>
       </li>
       <li className="nav-item my-2" style={{ width: "10%" }}>
-        <button className="btn btn-danger" onClick={handleChange}>
+        <button
+          className="btn btn-danger"
+          value="outcome"
+          onClick={handleChange}
+        >
           Create outcome
-          <NewExpenseForm
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-            expenseType="outcome"
-          />
         </button>
       </li>
+      <NewExpenseForm
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        expenseType={expenseType}
+      />
     </ul>
   );
 };
