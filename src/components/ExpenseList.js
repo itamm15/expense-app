@@ -15,6 +15,10 @@ const tableHeaderAndBody = {
   textAlign: "center",
 };
 
+const noExpenses = {
+  textAlign: "center",
+};
+
 const ExpenseList = ({ expensesList }) => {
   const { setExpensesList, error, isLoading } = useExpenses();
 
@@ -35,7 +39,7 @@ const ExpenseList = ({ expensesList }) => {
   return (
     <div style={table}>
       {error && <h1>Could not fetch data, an error occurred.</h1>}
-      {!isLoading && (
+      {!isLoading && expensesList.length > 0 ? (
         <table className="table">
           <thead>
             <tr style={tableHeaderAndBody}>
@@ -47,31 +51,32 @@ const ExpenseList = ({ expensesList }) => {
             </tr>
           </thead>
           <tbody>
-            {expensesList &&
-              expensesList.map(
-                ({ id, amount, description, expenseType, date }) => (
-                  <tr style={tableHeaderAndBody}>
-                    <th scope="row">{amount}</th>
-                    <th>{description}</th>
-                    <th>{date}</th>
-                    <th>{expenseType}</th>
-                    <th style={actions}>
-                      <button type="button" className="btn btn-warning btn-sm">
-                        Update
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-danger btn-sm"
-                        onClick={(event) => handleDelete(event, id)}
-                      >
-                        Delete
-                      </button>
-                    </th>
-                  </tr>
-                )
-              )}
+            {expensesList.map(
+              ({ id, amount, description, expenseType, date }) => (
+                <tr style={tableHeaderAndBody}>
+                  <th scope="row">{amount}</th>
+                  <th>{description}</th>
+                  <th>{date}</th>
+                  <th>{expenseType}</th>
+                  <th style={actions}>
+                    <button type="button" className="btn btn-warning btn-sm">
+                      Update
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-danger btn-sm"
+                      onClick={(event) => handleDelete(event, id)}
+                    >
+                      Delete
+                    </button>
+                  </th>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
+      ) : (
+        <h1 style={noExpenses}>You do not have any expenses currently.</h1>
       )}
     </div>
   );
