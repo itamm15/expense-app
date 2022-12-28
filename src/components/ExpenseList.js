@@ -1,9 +1,14 @@
 import useExpenses from "../hooks/useExpenses";
 
+const table = {
+  margin: "40px auto",
+  width: "90%",
+};
+
 const ExpenseList = () => {
   const { expensesList, error, isLoading } = useExpenses();
   return (
-    <>
+    <div style={table}>
       {error && <h1>Could not fetch data, an error occurred.</h1>}
       {!isLoading && (
         <table className="table">
@@ -28,7 +33,7 @@ const ExpenseList = () => {
           </tbody>
         </table>
       )}
-    </>
+    </div>
   );
 };
 
