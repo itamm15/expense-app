@@ -1,10 +1,12 @@
 import { useState } from "react";
+//import useExpenses from "../hooks/useExpenses";
 import NewExpenseForm from "./NewExpenseForm";
 
-const NavBar = () => {
+const NavBar = ({ searchedDescription, setSearchedDescription }) => {
+  // const { expensesList, setExpensesList } = useExpenses();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [expenseType, setExpenseType] = useState("income");
-  const handleChange = (event) => {
+  const createExpense = (event) => {
     setExpenseType(event.target.value);
     setIsModalOpen(true);
   };
@@ -22,8 +24,10 @@ const NavBar = () => {
           <input
             className="form-control"
             type="search"
-            placeholder="Search"
+            placeholder="Search description"
             aria-label="Search"
+            value={searchedDescription}
+            onChange={(event) => setSearchedDescription(event.target.value)}
           />
         </form>
       </li>
@@ -31,7 +35,7 @@ const NavBar = () => {
         <button
           className="btn btn-warning"
           value="income"
-          onClick={handleChange}
+          onClick={createExpense}
         >
           Create income
         </button>
@@ -40,7 +44,7 @@ const NavBar = () => {
         <button
           className="btn btn-danger"
           value="outcome"
-          onClick={handleChange}
+          onClick={createExpense}
         >
           Create outcome
         </button>

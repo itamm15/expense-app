@@ -15,8 +15,8 @@ const tableHeaderAndBody = {
   textAlign: "center",
 };
 
-const ExpenseList = () => {
-  const { expensesList, setExpensesList, error, isLoading } = useExpenses();
+const ExpenseList = ({ expensesList }) => {
+  const { setExpensesList, error, isLoading } = useExpenses();
 
   async function handleDelete(event, expenseId) {
     event.preventDefault();

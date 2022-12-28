@@ -20,7 +20,7 @@ const styleSubmitAndCloseButton = {
 
 const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
   const { expensesList, setExpensesList } = useExpenses();
-  const [expenseAmount, setExepnseAmount] = useState(0);
+  const [expenseAmount, setExpenseAmount] = useState(0);
   const [expenseDescription, setExpenseDescription] = useState(
     "Provide the description!"
   );
@@ -56,7 +56,7 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
             name="expense-amount"
             className="form-control"
             value={expenseAmount}
-            onChange={(event) => setExepnseAmount(event.target.value)}
+            onChange={(event) => setExpenseAmount(event.target.value)}
           />
         </div>
         <div className="form-group">
