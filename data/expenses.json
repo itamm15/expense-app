@@ -1,17 +1,10 @@
 {
   "expenses": [
     {
-      "date": "2022-12-26",
-      "amount": 0,
+      "date": "2022-12-28",
+      "amount": "123.41",
       "description": "Provide the description!",
       "expenseType": "outcome",
-      "id": 1
-    },
-    {
-      "date": "2022-12-28",
-      "amount": "100",
-      "description": "Provide the description!",
-      "expenseType": "income",
       "id": 2
     }
   ]
