@@ -1,5 +1,5 @@
 import { useState } from "react";
-import NewExpenseForm from "./NewExpenseForm";
+import ExpenseForm from "./ExpenseForm";
 
 const NavBar = ({ searchedDescription, setSearchedDescription }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,10 +47,11 @@ const NavBar = ({ searchedDescription, setSearchedDescription }) => {
           Create outcome
         </button>
       </li>
-      <NewExpenseForm
+      <ExpenseForm
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         expenseType={expenseType}
+        actionType="Create"
       />
     </ul>
   );

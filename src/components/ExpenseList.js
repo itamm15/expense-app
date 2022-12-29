@@ -1,4 +1,6 @@
+import { useState } from "react";
 import useExpenses from "../hooks/useExpenses";
+import ExpenseForm from "./ExpenseForm";
 
 const table = {
   margin: "40px auto",
@@ -20,6 +22,8 @@ const noExpenses = {
 };
 
 const ExpenseList = ({ expensesList }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [expenseToUpdate, setExpenseToUpdate] = useState(null);
   const { setExpensesList, error, isLoading } = useExpenses();
 
   async function handleDelete(event, expenseId) {
@@ -35,6 +39,11 @@ const ExpenseList = ({ expensesList }) => {
       setExpensesList(filteredExpenses);
     });
   }
+
+  const handleUpdate = (expense) => {
+    setExpenseToUpdate(expense);
+    setIsModalOpen(true);
+  };
 
   const displayErrorOrNoExpensesMessage = () => {
     return error
@@ -56,28 +65,37 @@ const ExpenseList = ({ expensesList }) => {
             </tr>
           </thead>
           <tbody>
-            {expensesList.map(
-              ({ id, amount, description, expenseType, date }) => (
-                <tr style={tableHeaderAndBody}>
-                  <th scope="row">{amount}</th>
-                  <th>{description}</th>
-                  <th>{date}</th>
-                  <th>{expenseType}</th>
-                  <th style={actions}>
-                    <button type="button" className="btn btn-warning btn-sm">
-                      Update
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-danger btn-sm"
-                      onClick={(event) => handleDelete(event, id)}
-                    >
-                      Delete
-                    </button>
-                  </th>
-                </tr>
-              )
-            )}
+            {expensesList.map((expense) => (
+              <tr style={tableHeaderAndBody}>
+                <th scope="row">{expense.amount}</th>
+                <th>{expense.description}</th>
+                <th>{expense.date}</th>
+                <th>{expense.expenseType}</th>
+                <th style={actions}>
+                  <button
+                    type="button"
+                    className="btn btn-warning btn-sm"
+                    onClick={() => handleUpdate(expense)}
+                  >
+                    Update
+                  </button>
+                  <ExpenseForm
+                    isModalOpen={isModalOpen}
+                    setIsModalOpen={setIsModalOpen}
+                    expenseType={expense.expenseType}
+                    actionType="Update"
+                    expenseToUpdate={expenseToUpdate}
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-danger btn-sm"
+                    onClick={(event) => handleDelete(event, expense.id)}
+                  >
+                    Delete
+                  </button>
+                </th>
+              </tr>
+            ))}
           </tbody>
         </table>
       ) : (

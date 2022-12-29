@@ -2,14 +2,28 @@
   "expenses": [
     {
       "date": "2022-12-29",
+      "amount": "1002",
+      "description": "motor",
+      "expenseType": "income",
+      "id": 1
+    },
+    {
+      "date": "2022-12-29",
+      "amount": "120",
+      "description": "Kawusia",
+      "expenseType": "income",
+      "id": 2
+    },
+    {
+      "date": "2022-12-29",
       "amount": "100",
-      "description": "Shoees",
+      "description": "Provide the description!",
       "expenseType": "income",
       "id": 3
     },
     {
       "date": "2022-12-29",
-      "amount": "100",
+      "amount": "200",
       "description": "Provide the description!",
       "expenseType": "income",
       "id": 4
