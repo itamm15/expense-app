@@ -1,3 +1,18 @@
 {
-  "expenses": []
+  "expenses": [
+    {
+      "date": "2022-12-29",
+      "amount": "100",
+      "description": "Shoees",
+      "expenseType": "income",
+      "id": 3
+    },
+    {
+      "date": "2022-12-29",
+      "amount": "100",
+      "description": "Provide the description!",
+      "expenseType": "income",
+      "id": 4
+    }
+  ]
 }

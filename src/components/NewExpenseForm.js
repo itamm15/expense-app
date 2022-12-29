@@ -42,7 +42,14 @@ const NewExpenseForm = ({ isModalOpen, setIsModalOpen, expenseType }) => {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(expense),
-    }).then(() => setExpensesList([expense, ...expensesList]));
+    })
+      .then((response) => response.json())
+      .then((parsedExpense) => {
+        setExpensesList([parsedExpense, ...expensesList]);
+        setExpenseAmount(0);
+        setExpenseDescription("Provide the description!");
+        setExpenseDate(new Date().toISOString().slice(0, 10));
+      });
   }
 
   return (

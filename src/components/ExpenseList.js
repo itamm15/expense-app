@@ -36,9 +36,14 @@ const ExpenseList = ({ expensesList }) => {
     });
   }
 
+  const displayErrorOrNoExpensesMessage = () => {
+    return error
+      ? "Could not fetch data, an error occurred."
+      : "You do not have any expenses currently.";
+  };
+
   return (
     <div style={table}>
-      {error && <h1>Could not fetch data, an error occurred.</h1>}
       {!isLoading && expensesList.length > 0 ? (
         <table className="table">
           <thead>
@@ -76,7 +81,7 @@ const ExpenseList = ({ expensesList }) => {
           </tbody>
         </table>
       ) : (
-        <h1 style={noExpenses}>You do not have any expenses currently.</h1>
+        <h1 style={noExpenses}>{displayErrorOrNoExpensesMessage()}</h1>
       )}
     </div>
   );
