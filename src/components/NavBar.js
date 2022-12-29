@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CREATE } from "../constants/actions";
-import { INCOME, OUTCOME } from "../constants/expenseType";
+import { INCOME, OUTCOME } from "../constants/expenseTypes";
 import ExpenseForm from "./ExpenseForm";
 
 const NavBar = ({ searchedDescription, setSearchedDescription }) => {
