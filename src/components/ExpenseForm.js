@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import useExpenses from "../hooks/useExpenses";
+import { UPDATE } from "../constants/actions";
+import createExpense from "../hooks/createExpense";
+import updateExpense from "../hooks/updateExpense";
 //import currency from 'currency.js';
 
 const styleModal = {
@@ -44,6 +47,7 @@ const ExpenseForm = ({
 
   async function handleExpenseSubmit(event) {
     event.preventDefault();
+
     const newExpense = {
       date: expenseDate,
       amount: expenseAmount,
@@ -51,40 +55,22 @@ const ExpenseForm = ({
       expenseType: expenseType,
     };
 
-    if (actionType === "Update") {
-      await fetch(`http://localhost:3001/expenses/${expenseToUpdate.id}`, {
-        method: "PUT",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(newExpense),
-      })
-        .then((response) => response.json())
-        .then((parsedExpense) => {
-          const updatedExpensesList = expensesList.map((expense) =>
-            expense.id === expenseToUpdate.id ? parsedExpense : expense
-          );
-          setExpenseAmount(0);
-          setExpenseDescription("Provide the description!");
-          setExpenseDate(new Date().toISOString().slice(0, 10));
-          setExpensesList(updatedExpensesList);
-        });
+    if (actionType === UPDATE) {
+      await updateExpense(
+        newExpense,
+        expensesList,
+        setExpensesList,
+        expenseToUpdate.id
+      );
     } else {
-      await fetch("http://localhost:3001/expenses", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(newExpense),
-      })
-        .then((response) => response.json())
-        .then((parsedExpense) => {
-          setExpenseAmount(0);
-          setExpenseDescription("Provide the description!");
-          setExpenseDate(new Date().toISOString().slice(0, 10));
-          setExpensesList([parsedExpense, ...expensesList]);
-        });
+      await createExpense(newExpense, expensesList, setExpensesList);
     }
+    setExpenseAmount(0);
+    setExpenseDescription("Provide the description!");
+    setExpenseDate(new Date().toISOString().slice(0, 10));
     setIsModalOpen(false);
   }
-  console.log(expenseDescription, "expenseDescription");
-  console.log(expenseAmount, "expenseAmountInit");
+
   return (
     <ReactModal isOpen={isModalOpen} style={styleModal} ariaHideApp={false}>
       <h3 style={{ textAlign: "center" }}>Create income/outcome</h3>

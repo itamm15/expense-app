@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { CREATE } from "../constants/actions";
+import { INCOME, OUTCOME } from "../constants/expenseType";
 import ExpenseForm from "./ExpenseForm";
 
 const NavBar = ({ searchedDescription, setSearchedDescription }) => {
@@ -32,7 +34,7 @@ const NavBar = ({ searchedDescription, setSearchedDescription }) => {
       <li className="nav-item my-2" style={{ width: "10%" }}>
         <button
           className="btn btn-warning"
-          value="income"
+          value={INCOME}
           onClick={createExpense}
         >
           Create income
@@ -41,7 +43,7 @@ const NavBar = ({ searchedDescription, setSearchedDescription }) => {
       <li className="nav-item my-2" style={{ width: "10%" }}>
         <button
           className="btn btn-danger"
-          value="outcome"
+          value={OUTCOME}
           onClick={createExpense}
         >
           Create outcome
@@ -51,7 +53,7 @@ const NavBar = ({ searchedDescription, setSearchedDescription }) => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         expenseType={expenseType}
-        actionType="Create"
+        actionType={CREATE}
       />
     </ul>
   );

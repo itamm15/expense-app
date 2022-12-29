@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { UPDATE } from "../constants/actions";
+import deleteExpense from "../hooks/deleteExpense";
 import useExpenses from "../hooks/useExpenses";
 import ExpenseForm from "./ExpenseForm";
 
@@ -28,16 +30,7 @@ const ExpenseList = ({ expensesList }) => {
 
   async function handleDelete(event, expenseId) {
     event.preventDefault();
-
-    await fetch(`http://localhost:3001/expenses/${expenseId}`, {
-      method: "DELETE",
-      headers: { "Content-type": "application/json" },
-    }).then(() => {
-      const filteredExpenses = expensesList.filter(({ id }) => {
-        return expenseId !== id;
-      });
-      setExpensesList(filteredExpenses);
-    });
+    await deleteExpense(expenseId, expensesList, setExpensesList);
   }
 
   const handleUpdate = (expense) => {
@@ -83,7 +76,7 @@ const ExpenseList = ({ expensesList }) => {
                     isModalOpen={isModalOpen}
                     setIsModalOpen={setIsModalOpen}
                     expenseType={expense.expenseType}
-                    actionType="Update"
+                    actionType={UPDATE}
                     expenseToUpdate={expenseToUpdate}
                   />
                   <button
