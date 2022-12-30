@@ -2,6 +2,7 @@ import NavBar from "./components/NavBar";
 import ExpenseList from "./components/ExpenseList";
 import useExpenses from "./hooks/useExpenses";
 import { useState } from "react";
+import ExpenseChart from "./components/ExpenseChart";
 
 function App() {
   const { expensesList } = useExpenses();
@@ -23,6 +24,7 @@ function App() {
         setSearchedDescription={setSearchedDescription}
       />
       <ExpenseList expensesList={filterExpenses()} />
+      <ExpenseChart expensesList={expensesList} />
     </>
   );
 }
