@@ -2,10 +2,24 @@
   "expenses": [
     {
       "date": "2022-12-31",
-      "amount": "200",
-      "description": "Korki",
+      "amount": "100",
+      "description": "Praca",
       "expenseType": "income",
-      "id": 1
+      "id": 2
+    },
+    {
+      "date": "2022-01-26",
+      "amount": "100",
+      "description": "Kawa z Wojtkiem",
+      "expenseType": "income",
+      "id": 3
+    },
+    {
+      "date": "2022-01-31",
+      "amount": "100",
+      "description": "Kawa z Wojtkiem",
+      "expenseType": "outcome",
+      "id": 4
     }
   ]
 }

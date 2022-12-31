@@ -26,6 +26,7 @@ const ExpenseList = ({ expensesList }) => {
 
   const handleUpdate = (expense) => {
     setExpenseToUpdate(expense);
+    setExpenseType(expense.expenseType);
     setActionType(UPDATE);
     setIsModalOpen(true);
   };
@@ -92,7 +93,7 @@ const ExpenseList = ({ expensesList }) => {
                       <ExpenseForm
                         isModalOpen={isModalOpen}
                         setIsModalOpen={setIsModalOpen}
-                        expenseType={expense.expenseType}
+                        expenseType={expenseType}
                         actionType={actionType}
                         expenseToUpdate={expenseToUpdate}
                       />

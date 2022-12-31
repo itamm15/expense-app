@@ -4,7 +4,6 @@ import useExpenses from "../hooks/useExpenses";
 import { UPDATE } from "../constants/actions";
 import createExpense from "../hooks/createExpense";
 import updateExpense from "../hooks/updateExpense";
-//import currency from 'currency.js';
 
 const styleModal = {
   content: {
