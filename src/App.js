@@ -1,8 +1,9 @@
 import NavBar from "./components/NavBar";
 import ExpenseList from "./components/ExpenseList";
 import useExpenses from "./hooks/useExpenses";
-import { useState } from "react";
 import ExpenseChart from "./components/ExpenseChart";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
   const { expensesList } = useExpenses();
@@ -18,14 +19,29 @@ function App() {
   };
 
   return (
-    <>
-      <NavBar
-        searchedDescription={searchedDescription}
-        setSearchedDescription={setSearchedDescription}
-      />
-      <ExpenseList expensesList={filterExpenses()} />
-      <ExpenseChart expensesList={expensesList} />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <NavBar
+              searchedDescription={searchedDescription}
+              setSearchedDescription={setSearchedDescription}
+            />
+          }
+        >
+          <Route
+            index
+            element={<ExpenseList expensesList={filterExpenses()} />}
+          />
+          <Route
+            path="charts"
+            element={<ExpenseChart expensesList={expensesList} />}
+          />
+          <Route path="bureau" />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

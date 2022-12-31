@@ -1,31 +1,16 @@
 import { useState } from "react";
-import { UPDATE } from "../constants/actions";
+import { UPDATE, CREATE } from "../constants/actions";
+import { INCOME, OUTCOME } from "../constants/expenseTypes";
 import deleteExpense from "../hooks/deleteExpense";
 import useExpenses from "../hooks/useExpenses";
 import ExpenseForm from "./ExpenseForm";
-
-const table = {
-  margin: "40px auto",
-  width: "90%",
-};
-
-const actions = {
-  display: "flex",
-  justifyContent: "center",
-  columnGap: "8%",
-};
-
-const tableHeaderAndBody = {
-  textAlign: "center",
-};
-
-const noExpenses = {
-  textAlign: "center",
-};
+import "../styles/ExpenseList.scss";
 
 const ExpenseList = ({ expensesList }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [expenseToUpdate, setExpenseToUpdate] = useState(null);
+  const [expenseType, setExpenseType] = useState("income");
+  const [actionType, setActionType] = useState(CREATE);
   const { setExpensesList, error, isLoading } = useExpenses();
 
   async function handleDelete(event, expenseId) {
@@ -33,8 +18,15 @@ const ExpenseList = ({ expensesList }) => {
     await deleteExpense(expenseId, expensesList, setExpensesList);
   }
 
+  const createExpense = (event) => {
+    setExpenseType(event.target.value);
+    setActionType(CREATE);
+    setIsModalOpen(true);
+  };
+
   const handleUpdate = (expense) => {
     setExpenseToUpdate(expense);
+    setActionType(UPDATE);
     setIsModalOpen(true);
   };
 
@@ -45,54 +37,79 @@ const ExpenseList = ({ expensesList }) => {
   };
 
   return (
-    <div style={table}>
-      {!isLoading && expensesList.length > 0 ? (
-        <table className="table">
-          <thead>
-            <tr style={tableHeaderAndBody}>
-              <th scope="col">Amount</th>
-              <th scope="col">Description</th>
-              <th scope="col">Date</th>
-              <th scope="col">Type</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {expensesList.map((expense) => (
-              <tr style={tableHeaderAndBody}>
-                <th scope="row">{expense.amount}</th>
-                <th>{expense.description}</th>
-                <th>{expense.date}</th>
-                <th>{expense.expenseType}</th>
-                <th style={actions}>
-                  <button
-                    type="button"
-                    className="btn btn-warning btn-sm"
-                    onClick={() => handleUpdate(expense)}
-                  >
-                    Update
-                  </button>
-                  <ExpenseForm
-                    isModalOpen={isModalOpen}
-                    setIsModalOpen={setIsModalOpen}
-                    expenseType={expense.expenseType}
-                    actionType={UPDATE}
-                    expenseToUpdate={expenseToUpdate}
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-danger btn-sm"
-                    onClick={(event) => handleDelete(event, expense.id)}
-                  >
-                    Delete
-                  </button>
-                </th>
+    <div className="table-view">
+      {error && <h2 className="error">{displayErrorOrNoExpensesMessage()}</h2>}
+      {!error && expensesList && (
+        <>
+          <div className="action-buttons">
+            <button
+              className="btn btn-warning"
+              value={INCOME}
+              onClick={createExpense}
+            >
+              Create income
+            </button>
+            <button
+              className="btn btn-danger create-outcome"
+              value={OUTCOME}
+              onClick={createExpense}
+            >
+              Create outcome
+            </button>
+            <ExpenseForm
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              expenseType={expenseType}
+              actionType={actionType}
+            />
+          </div>
+          <table className="table">
+            <thead>
+              <tr className="table-header-and-body">
+                <th scope="col">Amount</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Type</th>
+                <th scope="col">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <h1 style={noExpenses}>{displayErrorOrNoExpensesMessage()}</h1>
+            </thead>
+            {!isLoading && (
+              <tbody>
+                {expensesList.map((expense) => (
+                  <tr className="table-header-and-body">
+                    <th scope="row">{expense.amount}</th>
+                    <th>{expense.description}</th>
+                    <th>{expense.date}</th>
+                    <th>{expense.expenseType}</th>
+                    <th className="actions">
+                      <button
+                        type="button"
+                        className="btn btn-warning btn-sm"
+                        onClick={() => handleUpdate(expense)}
+                      >
+                        Update
+                      </button>
+                      <ExpenseForm
+                        isModalOpen={isModalOpen}
+                        setIsModalOpen={setIsModalOpen}
+                        expenseType={expense.expenseType}
+                        actionType={actionType}
+                        expenseToUpdate={expenseToUpdate}
+                      />
+                      <button
+                        type="button"
+                        className="btn btn-danger btn-sm"
+                        onClick={(event) => handleDelete(event, expense.id)}
+                      >
+                        Delete
+                      </button>
+                    </th>
+                  </tr>
+                ))}
+              </tbody>
+            )}
+          </table>
+        </>
       )}
     </div>
   );

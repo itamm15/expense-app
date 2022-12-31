@@ -1,5 +1,5 @@
 import Chart from "chart.js/auto";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 const ExpenseChart = (expensesList) => {
   const chartStyles = {
@@ -25,15 +25,21 @@ const ExpenseChart = (expensesList) => {
     datasets: [
       {
         label: "Income",
-        data: [10, 20, 30, 200, 124, 10, 20, 30, 200, 124, 90, 1],
+        data: [10, 20, 30],
+        fill: true,
+        backgroundColor: "green",
+      },
+      {
+        label: "Outcome",
+        data: [100, 250, 310],
         fill: false,
-        borderColor: "pink",
+        backgroundColor: "red",
       },
     ],
   };
   return (
     <div style={chartStyles}>
-      <Line data={data} height={300} width={1000} />
+      <Bar data={data} height={300} width={1000} />
     </div>
   );
 };
