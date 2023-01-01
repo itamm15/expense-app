@@ -3,7 +3,7 @@ export default async function createExpense(
   expensesList,
   setExpensesList
 ) {
-  await fetch("http://localhost:3001/expenses", {
+  await fetch("/expenses", {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(newExpense),

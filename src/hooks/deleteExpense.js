@@ -3,7 +3,7 @@ export default async function deleteExpense(
   expensesList,
   setExpensesList
 ) {
-  await fetch(`http://localhost:3001/expenses/${expenseId}`, {
+  await fetch(`/expenses/${expenseId}`, {
     method: "DELETE",
     headers: { "Content-type": "application/json" },
   }).then(() => {

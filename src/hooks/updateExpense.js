@@ -4,7 +4,7 @@ export default async function updateExpense(
   setExpensesList,
   expensesToUpdateId
 ) {
-  await fetch(`http://localhost:3001/expenses/${expensesToUpdateId}`, {
+  await fetch(`/expenses/${expensesToUpdateId}`, {
     method: "PUT",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(newExpense),
