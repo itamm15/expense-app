@@ -8,17 +8,17 @@
       "id": 2
     },
     {
-      "date": "2022-01-26",
-      "amount": "100",
-      "description": "Kawa z Wojtkiem",
-      "expenseType": "income",
+      "date": "2023-01-01",
+      "amount": "120",
+      "description": "Kolacja z Daga",
+      "expenseType": "outcome",
       "id": 3
     },
     {
-      "date": "2022-01-31",
+      "date": "2023-01-01",
       "amount": "100",
-      "description": "Kawa z Wojtkiem",
-      "expenseType": "outcome",
+      "description": "Korki",
+      "expenseType": "income",
       "id": 4
     }
   ]

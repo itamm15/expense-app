@@ -31,6 +31,11 @@ const ExpenseList = ({ expensesList }) => {
     setIsModalOpen(true);
   };
 
+  const sumOfExpenses = (expensesList) => {
+    // Needs to consider the logic with later filtering function
+    return 0;
+  }
+
   const displayErrorOrNoExpensesMessage = () => {
     return error
       ? "Could not fetch data, an error occurred."
@@ -67,10 +72,10 @@ const ExpenseList = ({ expensesList }) => {
           <table className="table">
             <thead>
               <tr className="table-header-and-body">
-                <th scope="col">Amount</th>
+                <th scope="col">Type</th>
                 <th scope="col">Description</th>
                 <th scope="col">Date</th>
-                <th scope="col">Type</th>
+                <th scope="col">Amount</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -78,10 +83,10 @@ const ExpenseList = ({ expensesList }) => {
               <tbody>
                 {expensesList.map((expense) => (
                   <tr className="table-header-and-body">
-                    <th scope="row">{expense.amount}</th>
+                    <th scope="row">{expense.expenseType}</th>
                     <th>{expense.description}</th>
                     <th>{expense.date}</th>
-                    <th>{expense.expenseType}</th>
+                    <th>{expense.amount}</th>
                     <th className="actions">
                       <button
                         type="button"
@@ -107,6 +112,11 @@ const ExpenseList = ({ expensesList }) => {
                     </th>
                   </tr>
                 ))}
+                <tr className="table-header-and-body">
+                  <th colspan="3">&nbsp;</th>
+                  <th>Sum: {sumOfExpenses()}</th>
+                  <th></th>
+                </tr>
               </tbody>
             )}
           </table>
