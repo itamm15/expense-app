@@ -20,6 +20,13 @@
       "description": "Korki",
       "expenseType": "income",
       "id": 4
+    },
+    {
+      "date": "2023-01-04",
+      "amount": "200",
+      "description": "Sprzatanie ogrodu",
+      "expenseType": "income",
+      "id": 5
     }
   ]
 }

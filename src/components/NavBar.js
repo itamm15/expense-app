@@ -1,8 +1,16 @@
 import { Link, Outlet } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import "../styles/Navbar.scss";
+import { useState } from "react";
+import Settings from "./Settings";
 
 const NavBar = ({ searchedDescription, setSearchedDescription }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenSettings = (event) => {
+    event.preventDefault();
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <ul className="nav nav-pills bg-light d-flex flex-row justify-content-around">
@@ -39,9 +47,10 @@ const NavBar = ({ searchedDescription, setSearchedDescription }) => {
           </form>
         </li>
         <li className="nav-item my-2 settings">
-          <button className="settings-button">
+          <button className="settings-button" onClick={handleOpenSettings}>
             <FiSettings size={30} />
           </button>
+          <Settings isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
         </li>
       </ul>
       <Outlet />

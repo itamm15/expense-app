@@ -76,9 +76,9 @@ const ExpenseList = ({ expensesList }) => {
           <table className="table">
             <thead>
               <tr className="table-header-and-body">
-                <th scope="col">Type</th>
                 <th scope="col">Description</th>
                 <th scope="col">Date</th>
+                <th scope="col">Type</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Actions</th>
               </tr>
@@ -87,9 +87,9 @@ const ExpenseList = ({ expensesList }) => {
               <tbody>
                 {expensesList.map((expense) => (
                   <tr className="table-header-and-body">
-                    <th scope="row">{expense.expenseType}</th>
-                    <th>{expense.description}</th>
+                    <th scope="row">{expense.description}</th>
                     <th>{expense.date}</th>
+                    <th>{expense.expenseType}</th>
                     <th>{expense.amount}</th>
                     <th className="actions">
                       <button
