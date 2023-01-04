@@ -4,6 +4,7 @@ import { INCOME, OUTCOME } from "../constants/expenseTypes";
 import deleteExpense from "../hooks/deleteExpense";
 import useExpenses from "../hooks/useExpenses";
 import ExpenseForm from "./ExpenseForm";
+import currency from "currency.js";
 import "../styles/ExpenseList.scss";
 
 const ExpenseList = ({ expensesList }) => {
@@ -32,9 +33,12 @@ const ExpenseList = ({ expensesList }) => {
   };
 
   const sumOfExpenses = (expensesList) => {
-    // Needs to consider the logic with later filtering function
-    return 0;
-  }
+    const { value } = expensesList.reduce((sum, { amount, expenseType }) => {
+      let expenseAmount = expenseType === INCOME ? amount : amount * -1;
+      return sum.add(expenseAmount);
+    }, currency(0));
+    return value;
+  };
 
   const displayErrorOrNoExpensesMessage = () => {
     return error
@@ -113,8 +117,8 @@ const ExpenseList = ({ expensesList }) => {
                   </tr>
                 ))}
                 <tr className="table-header-and-body">
-                  <th colspan="3">&nbsp;</th>
-                  <th>Sum: {sumOfExpenses()}</th>
+                  <th colSpan="3">&nbsp;</th>
+                  <th>Sum: {sumOfExpenses(expensesList)}</th>
                   <th></th>
                 </tr>
               </tbody>
