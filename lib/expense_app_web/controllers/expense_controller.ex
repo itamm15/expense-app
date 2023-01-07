@@ -11,13 +11,11 @@ defmodule ExpenseAppWeb.ExpenseController do
   end
 
   def create(conn, params) do
-    IO.inspect(params, label: "params")
     case Expense.create_expense(params) do
       {:ok, _created_expense} ->
-        expenses = Expense.list_expenses()
+        expenses = Expense.list_expenses() |> format_money_type()
         json(conn, expenses)
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset, label: "changeset")
         conn
         |> put_view(ExpenseAppWeb.ErrorView)
         |> render("error.json", changeset: changeset)
