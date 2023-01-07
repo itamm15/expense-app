@@ -1,4 +1,4 @@
-defmodule ExpenseApp.Expense do
+defmodule ExpenseApp.Assessment do
   # aliases
   alias ExpenseApp.Context.Expenses
 

@@ -16,8 +16,8 @@ defmodule ExpenseAppWeb.Router do
   scope "/api", ExpenseAppWeb do
     pipe_through :api
 
-    get "/expenses", ExpenseController, :index
-    post "/expenses", ExpenseController, :create
+    get "/expenses", AssessmentController, :index
+    post "/expenses", AssessmentController, :create
   end
 
   scope "/", ExpenseAppWeb do

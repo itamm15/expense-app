@@ -1,20 +1,21 @@
-defmodule ExpenseAppWeb.ExpenseController do
+defmodule ExpenseAppWeb.AssessmentController do
   use ExpenseAppWeb, :controller
 
   # aliases
   alias ExpenseApp.Expense
+  alias ExpenseApp.Assessment
 
   def index(conn, _params) do
-    expenses = Expense.list_expenses() |> format_money_type()
+    expenses = Assessment.list_expenses() |> format_money_type()
 
     json(conn, expenses)
   end
 
   def create(conn, params) do
-    case Expense.create_expense(params) do
-      {:ok, _created_expense} ->
-        expenses = Expense.list_expenses() |> format_money_type()
-        json(conn, expenses)
+    case Assessment.create_expense(params) do
+      {:ok, created_expense} ->
+        created_expense = created_expense |> format_money_type()
+        json(conn, created_expense)
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_view(ExpenseAppWeb.ErrorView)
@@ -23,6 +24,11 @@ defmodule ExpenseAppWeb.ExpenseController do
   end
 
   ##### PRIVATE #####
+
+  defp format_money_type(%Expense{} = expense) do
+    amount = Money.to_string(expense.amount)
+    Map.put(expense, :amount, amount)
+  end
 
   defp format_money_type(expenses_list) do
     expenses_list |> Enum.map(fn %{amount: amount} = expenses ->
