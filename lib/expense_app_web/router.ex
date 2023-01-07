@@ -13,6 +13,12 @@ defmodule ExpenseAppWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", ExpenseAppWeb do
+    pipe_through :api
+
+    get "/expenses", ExpenseController, :index
+  end
+
   scope "/", ExpenseAppWeb do
     pipe_through :browser
 
