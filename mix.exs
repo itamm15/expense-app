@@ -43,7 +43,8 @@ defmodule ExpenseApp.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:money, "~> 1.12.0"}
+      {:money, "~> 1.12.0"},
+      {:cors_plug, "~> 3.0"}
     ]
   end
 
