@@ -4,6 +4,7 @@ defmodule ExpenseApp.Expense.Expense do
 
   @required [:description, :type, :amount, :date]
 
+  @derive {Jason.Encoder, only: @required}
   schema "expenses" do
     field :description, :string
     field :type, Ecto.Enum, values: [:income, :outcome]

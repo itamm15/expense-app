@@ -89,7 +89,7 @@ const ExpenseList = ({ expensesList }) => {
                   <tr className="table-header-and-body">
                     <th scope="row">{expense.description}</th>
                     <th>{expense.date}</th>
-                    <th>{expense.expenseType}</th>
+                    <th>{expense.type}</th>
                     <th>{expense.amount}</th>
                     <th className="actions">
                       <button

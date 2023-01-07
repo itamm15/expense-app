@@ -51,7 +51,7 @@ const ExpenseForm = ({
       date: expenseDate,
       amount: expenseAmount,
       description: expenseDescription,
-      expenseType: expenseType,
+      type: expenseType,
     };
 
     if (actionType === UPDATE) {
