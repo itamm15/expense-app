@@ -18,6 +18,7 @@ defmodule ExpenseAppWeb.Router do
 
     get "/expenses", AssessmentController, :index
     post "/expenses", AssessmentController, :create
+    delete "/expenses/:id", AssessmentController, :delete
   end
 
   scope "/", ExpenseAppWeb do

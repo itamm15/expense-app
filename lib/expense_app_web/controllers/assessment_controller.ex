@@ -23,6 +23,17 @@ defmodule ExpenseAppWeb.AssessmentController do
     end
   end
 
+  def delete(conn, %{"id" => id}) do
+    case Assessment.delete_expense(id) do
+      {:ok, _deleted_expense} ->
+        json(conn, "Deleted")
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_view(ExpenseAppWeb.ErrorView)
+        |> render("error.json", changeset: changeset)
+    end
+  end
+
   ##### PRIVATE #####
 
   defp format_money_type(%Expense{} = expense) do

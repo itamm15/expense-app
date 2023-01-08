@@ -1,7 +1,11 @@
 export const fetchExpenses = (setExpensesList, setError, setIsLoading) => {
   const abortController = new AbortController();
 
-  fetch("/expenses", { signal: abortController.signal })
+  fetch("/expenses", {
+    method: "GET",
+    headers: { "Content-type": "application/json" },
+    signal: abortController.signal
+  })
     .then((response) => {
       if (!response.ok)
         throw Error(`Could not fetch data, response=${response.json}`);

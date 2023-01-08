@@ -2,7 +2,7 @@ defmodule ExpenseApp.Expense do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required [:description, :type, :amount, :date]
+  @required [:id, :description, :type, :amount, :date]
 
   @derive {Jason.Encoder, only: @required}
   schema "expenses" do
