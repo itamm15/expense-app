@@ -43,7 +43,7 @@ defmodule ExpenseAppWeb.AssessmentController do
 
   defp format_money_type(expenses_list) do
     expenses_list |> Enum.map(fn %{amount: amount} = expenses ->
-      stringified_money = Money.to_string(amount)
+      stringified_money = Money.to_string(amount, symbol: false)
       Map.put(expenses, :amount, stringified_money)
     end)
   end
