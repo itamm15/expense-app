@@ -10,7 +10,7 @@ import "../styles/ExpenseList.scss";
 const ExpenseList = ({ expensesList }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [expenseToUpdate, setExpenseToUpdate] = useState(null);
-  const [expenseType, setExpenseType] = useState("income");
+  const [expenseType, setExpenseType] = useState(INCOME);
   const [actionType, setActionType] = useState(CREATE);
   const { setExpensesList, error, isLoading } = useExpenses();
 
