@@ -27,14 +27,14 @@ const ExpenseList = ({ expensesList }) => {
 
   const handleUpdate = (expense) => {
     setExpenseToUpdate(expense);
-    setExpenseType(expense.expenseType);
+    setExpenseType(expense.type);
     setActionType(UPDATE);
     setIsModalOpen(true);
   };
 
   const sumOfExpenses = (expensesList) => {
-    const { value } = expensesList.reduce((sum, { amount, expenseType }) => {
-      let expenseAmount = expenseType === INCOME ? amount : amount * -1;
+    const { value } = expensesList.reduce((sum, { amount, type }) => {
+      let expenseAmount = type === INCOME ? amount : amount * -1;
       return sum.add(expenseAmount);
     }, currency(0));
     return value;
@@ -80,6 +80,7 @@ const ExpenseList = ({ expensesList }) => {
                 <th scope="col">Date</th>
                 <th scope="col">Type</th>
                 <th scope="col">Amount</th>
+                <th scope="col">Currency</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -91,6 +92,7 @@ const ExpenseList = ({ expensesList }) => {
                     <th>{expense.date}</th>
                     <th>{expense.type}</th>
                     <th>{expense.amount}</th>
+                    <th>{expense.currency}</th>
                     <th className="actions">
                       <button
                         type="button"

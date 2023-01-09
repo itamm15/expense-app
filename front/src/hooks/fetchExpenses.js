@@ -4,7 +4,7 @@ export const fetchExpenses = (setExpensesList, setError, setIsLoading) => {
   fetch("/expenses", {
     method: "GET",
     headers: { "Content-type": "application/json" },
-    signal: abortController.signal
+    signal: abortController.signal,
   })
     .then((response) => {
       if (!response.ok)

@@ -2,7 +2,7 @@ defmodule ExpenseApp.Expense do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required [:id, :description, :type, :amount, :date]
+  @required [:id, :description, :type, :amount, :date, :currency]
 
   @derive {Jason.Encoder, only: @required}
   schema "expenses" do
@@ -10,6 +10,7 @@ defmodule ExpenseApp.Expense do
     field :type, Ecto.Enum, values: [:income, :outcome]
     field :amount, Money.Ecto.Amount.Type
     field :date,  :date
+    field :currency, :string, default: "EUR"
 
     timestamps()
   end
