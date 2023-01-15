@@ -2,14 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ExpensesContextProvider } from "./hooks/useExpenses";
+import { ExpensesContextProvider } from "./context/expensesContext";
+import { UserContextProvider } from "./context/userContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ExpensesContextProvider>
-      <App />
-    </ExpensesContextProvider>
+    <UserContextProvider>
+      <ExpensesContextProvider>
+        <App />
+      </ExpensesContextProvider>
+    </UserContextProvider>
   </React.StrictMode>
 );
 

@@ -1,6 +1,6 @@
 import NavBar from "./components/NavBar";
 import ExpenseList from "./components/ExpenseList";
-import useExpenses from "./hooks/useExpenses";
+import useExpenses from "./context/expensesContext";
 import ExpenseChart from "./components/ExpenseChart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
