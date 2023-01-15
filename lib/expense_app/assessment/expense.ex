@@ -12,6 +12,9 @@ defmodule ExpenseApp.Expense do
     field :date, :date
     field :currency, :string, default: "EUR"
 
+    ### ASSOCIATIONS ###
+    belongs_to :user, ExpenseApp.User
+
     timestamps()
   end
 

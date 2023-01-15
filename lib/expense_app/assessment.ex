@@ -1,4 +1,8 @@
 defmodule ExpenseApp.Assessment do
+  @moduledoc """
+  Module responsible for handling expenses.
+  """
+
   # aliases
   alias ExpenseApp.Context.Expenses
 
