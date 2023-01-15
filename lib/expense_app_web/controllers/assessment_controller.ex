@@ -16,6 +16,7 @@ defmodule ExpenseAppWeb.AssessmentController do
       {:ok, created_expense} ->
         created_expense = created_expense |> format_money_type()
         json(conn, created_expense)
+
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_view(ExpenseAppWeb.ErrorView)
@@ -27,6 +28,7 @@ defmodule ExpenseAppWeb.AssessmentController do
     case Assessment.delete_expense(id) do
       {:ok, _deleted_expense} ->
         json(conn, "Deleted")
+
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_view(ExpenseAppWeb.ErrorView)
@@ -42,7 +44,8 @@ defmodule ExpenseAppWeb.AssessmentController do
   end
 
   defp format_money_type(expenses_list) do
-    expenses_list |> Enum.map(fn %{amount: amount} = expenses ->
+    expenses_list
+    |> Enum.map(fn %{amount: amount} = expenses ->
       stringified_money = Money.to_string(amount, symbol: false)
       Map.put(expenses, :amount, stringified_money)
     end)

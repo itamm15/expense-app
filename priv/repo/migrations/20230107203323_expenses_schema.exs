@@ -5,6 +5,7 @@ defmodule ExpenseApp.Repo.Migrations.ExpensesSchema do
     create_expenese_type_query = "CREATE TYPE expense_type AS ENUM('income', 'outcome')"
     drop_query = "DROP TYPE expense_type"
     execute(create_expenese_type_query, drop_query)
+
     create table(:expenses) do
       add :description, :string
       add :type, :expense_type

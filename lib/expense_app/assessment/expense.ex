@@ -9,7 +9,7 @@ defmodule ExpenseApp.Expense do
     field :description, :string
     field :type, Ecto.Enum, values: [:income, :outcome]
     field :amount, Money.Ecto.Amount.Type
-    field :date,  :date
+    field :date, :date
     field :currency, :string, default: "EUR"
 
     timestamps()
