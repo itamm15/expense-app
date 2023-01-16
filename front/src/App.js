@@ -1,12 +1,16 @@
 import NavBar from "./components/NavBar";
 import ExpenseList from "./components/ExpenseList";
-import useExpenses from "./context/expensesContext";
+import useExpenses from "./context/expenseContext";
 import ExpenseChart from "./components/ExpenseChart";
+import history from 'history/browser';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { useUser } from "./context/userContext";
+import Login from "./components/Login";
 
 function App() {
   const { expensesList } = useExpenses();
+  const { session } = useUser();
   const [searchedDescription, setSearchedDescription] = useState("");
 
   const filterExpenses = () => {
@@ -18,9 +22,11 @@ function App() {
     });
   };
 
+  if (session === undefined) history.push('/login');
+
   return (
     <BrowserRouter>
-      <Routes>
+      <Routes history={history}>
         <Route
           path="/"
           element={
@@ -40,6 +46,7 @@ function App() {
           />
           <Route path="bureau" />
         </Route>
+        <Route path="login" element={ <Login /> } />
       </Routes>
     </BrowserRouter>
   );

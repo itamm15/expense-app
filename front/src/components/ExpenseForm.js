@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
-import useExpenses from "../context/expensesContext";
+import useExpenses from "../context/expenseContext";
 import { UPDATE } from "../constants/actions";
 import createExpense from "../hooks/createExpense";
 import updateExpense from "../hooks/updateExpense";

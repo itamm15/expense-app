@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ExpensesContextProvider } from "./context/expensesContext";
+import { ExpensesContextProvider } from "./context/expenseContext";
 import { UserContextProvider } from "./context/userContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
