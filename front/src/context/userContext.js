@@ -12,7 +12,9 @@ export const UserContextProvider = ({ children }) => {
 
   useEffect(() => {
     setSession(getSession());
-  }, [])
+  }, []);
 
-  return <UserContext.Provider value={session}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={session}>{children}</UserContext.Provider>
+  );
 };

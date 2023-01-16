@@ -2,7 +2,7 @@ import NavBar from "./components/NavBar";
 import ExpenseList from "./components/ExpenseList";
 import useExpenses from "./context/expenseContext";
 import ExpenseChart from "./components/ExpenseChart";
-import history from 'history/browser';
+import history from "history/browser";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { useUser } from "./context/userContext";
@@ -22,7 +22,7 @@ function App() {
     });
   };
 
-  if (session === undefined) history.push('/login');
+  if (session === undefined) history.push("/login");
 
   return (
     <BrowserRouter>
@@ -46,7 +46,7 @@ function App() {
           />
           <Route path="bureau" />
         </Route>
-        <Route path="login" element={ <Login /> } />
+        <Route path="login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
