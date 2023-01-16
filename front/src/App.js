@@ -10,7 +10,7 @@ import Login from "./components/Login";
 
 function App() {
   const { expensesList } = useExpenses();
-  const { session } = useUser();
+  const session  = useUser();
   const [searchedDescription, setSearchedDescription] = useState("");
 
   const filterExpenses = () => {
@@ -21,7 +21,6 @@ function App() {
         .includes(searchedDescription.toLowerCase());
     });
   };
-
   if (session === undefined) history.push("/login");
 
   return (
