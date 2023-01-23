@@ -1,0 +1,47 @@
+@import 'colors';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: $registration-background-color;
+}
+
+.main-view {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.logo-view {
+  top: 30%;
+  width: 65%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 50%;
+  height: 40%;
+}
+
+.form-view {
+  width: 35%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+}
+
+.form {
+  background-color: white;
+  padding: 5px;
+}
+
+.registration-title {
+  font-size: 26px;
+}

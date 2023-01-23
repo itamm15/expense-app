@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { useUser } from "./context/userContext";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   const { expensesList } = useExpenses();
@@ -21,7 +22,7 @@ function App() {
         .includes(searchedDescription.toLowerCase());
     });
   };
-  if (session === undefined) history.push("/login");
+  if (session === undefined) history.push("/register");
 
   return (
     <BrowserRouter>
@@ -46,6 +47,7 @@ function App() {
           <Route path="bureau" />
         </Route>
         <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
