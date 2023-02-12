@@ -44,7 +44,8 @@ defmodule ExpenseApp.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:money, "~> 1.12.0"},
-      {:cors_plug, "~> 3.0"}
+      {:cors_plug, "~> 3.0"},
+      {:excellent_migrations, "~> 0.1", only: [:dev, :test], runtime: false}
     ]
   end
 
