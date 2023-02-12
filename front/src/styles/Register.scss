@@ -1,6 +1,7 @@
-@import 'colors';
+@import "colors";
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -44,4 +45,8 @@ html, body {
 
 .registration-title {
   font-size: 26px;
+}
+
+.submit {
+  margin-top: 8px;
 }

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { fetchExpenses } from "../hooks/fetchExpenses";
+import { fetchExpenses } from "../hooks/expense/fetchExpenses";
 
 const ExpensesContext = createContext();
 

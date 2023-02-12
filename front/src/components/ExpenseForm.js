@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import useExpenses from "../context/expenseContext";
 import { UPDATE } from "../constants/actions";
-import createExpense from "../hooks/createExpense";
-import updateExpense from "../hooks/updateExpense";
+import createExpense from "../hooks/expense/createExpense";
+import updateExpense from "../hooks/expense/updateExpense";
 
 const styleModal = {
   content: {

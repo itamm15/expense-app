@@ -11,7 +11,7 @@ import Register from "./components/Register";
 
 function App() {
   const { expensesList } = useExpenses();
-  const session  = useUser();
+  const session = useUser();
   const [searchedDescription, setSearchedDescription] = useState("");
 
   const filterExpenses = () => {

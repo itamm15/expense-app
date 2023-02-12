@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UPDATE, CREATE } from "../constants/actions";
 import { INCOME, OUTCOME } from "../constants/expenseTypes";
-import deleteExpense from "../hooks/deleteExpense";
+import deleteExpense from "../hooks/expense/deleteExpense";
 import useExpenses from "../context/expenseContext";
 import ExpenseForm from "./ExpenseForm";
 import currency from "currency.js";
