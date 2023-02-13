@@ -196,10 +196,11 @@
           {Credo.Check.Warning.LeakyEnvironment, []},
           {Credo.Check.Warning.MapGetUnsafePass, []},
           {Credo.Check.Warning.MixEnv, []},
-          {Credo.Check.Warning.UnsafeToAtom, []}
+          {Credo.Check.Warning.UnsafeToAtom, []},
 
           # {Credo.Check.Refactor.MapInto, []},
 
+          {ExcellentMigrations.CredoCheck.MigrationsSafety, []}
           #
           # Custom checks can be created using `mix credo.gen.check`.
           #
