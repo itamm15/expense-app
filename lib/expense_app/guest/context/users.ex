@@ -1,4 +1,5 @@
 defmodule ExpenseApp.Context.Users do
+  @moduledoc false
   # imports
   import Ecto.Query
 

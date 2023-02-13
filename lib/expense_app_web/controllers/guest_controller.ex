@@ -5,15 +5,11 @@ defmodule ExpenseAppWeb.GuestController do
   alias ExpenseApp.Guest
 
   def create(conn, params) do
-    IO.inspect(params, label: "params")
-
     case Guest.create_user(params) do
       {:ok, created_user} ->
-        IO.inspect(created_user, label: "created_user")
         json(conn, created_user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset, label: "changeset")
 
         conn
         |> put_view(ExpenseAppWeb.ErrorView)
