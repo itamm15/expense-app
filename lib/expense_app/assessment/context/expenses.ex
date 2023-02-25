@@ -20,14 +20,14 @@ defmodule ExpenseApp.Context.Expenses do
     |> Repo.all()
   end
 
-  @spec create_expense(map()) :: {:ok, Expense.t()} | {:error, %Ecto.Changeset.t()}
+  @spec create_expense(map()) :: {:ok, Expense.t()} | {:error, Ecto.Changeset.t()}
   def create_expense(expense) do
     %Expense{}
     |> Expense.changeset(expense)
     |> Repo.insert()
   end
 
-  @spec delete_expense(Expense.t()) :: {:ok, Expense.t()} | {:error, %Ecto.Changeset.t()}
+  @spec delete_expense(Expense.t()) :: {:ok, Expense.t()} | {:error, Ecto.Changeset.t()}
   def delete_expense(id) when is_binary(id) do
     id
     |> String.to_integer()

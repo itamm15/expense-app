@@ -3,15 +3,15 @@ import ExpenseList from "./components/ExpenseList";
 import useExpenses from "./context/expenseContext";
 import ExpenseChart from "./components/ExpenseChart";
 import history from "history/browser";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import { useState } from "react";
-import { useUser } from "./context/userContext";
+import { UserContextProvider, useUser } from "./context/userContext";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
 function App() {
   const { expensesList } = useExpenses();
-  const session = useUser();
+  const [session] = useUser();
   const [searchedDescription, setSearchedDescription] = useState("");
 
   const filterExpenses = () => {
@@ -22,34 +22,33 @@ function App() {
         .includes(searchedDescription.toLowerCase());
     });
   };
-  if (session === undefined) history.push("/register");
+
+  const RequireLogged = () => {
+    if (session === undefined) return <Navigate to="register" replace />
+  }
 
   return (
-    <BrowserRouter>
+    <UserContextProvider>
       <Routes history={history}>
-        <Route
-          path="/"
-          element={
-            <NavBar
-              searchedDescription={searchedDescription}
-              setSearchedDescription={setSearchedDescription}
+        <Route element={<RequireLogged />} >
+          <Route
+            path="/"
+            element={ <NavBar searchedDescription={searchedDescription} setSearchedDescription={setSearchedDescription}/>}>
+            <Route
+              index
+              element={<ExpenseList expensesList={filterExpenses()} />}
             />
-          }
-        >
-          <Route
-            index
-            element={<ExpenseList expensesList={filterExpenses()} />}
-          />
-          <Route
-            path="charts"
-            element={<ExpenseChart expensesList={expensesList} />}
-          />
-          <Route path="bureau" />
+            <Route
+              path="charts"
+              element={<ExpenseChart expensesList={expensesList} />}
+            />
+            <Route path="bureau" />
+          </Route>
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Routes>
-    </BrowserRouter>
+    </UserContextProvider>
   );
 }
 

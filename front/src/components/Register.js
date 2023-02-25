@@ -1,8 +1,11 @@
 import { useState } from "react";
-import createUser from "../hooks/user/createUser";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/userContext";
+import CreateUser from "../hooks/user/CreateUser";
 import "../styles/Register.scss";
 
 const Register = () => {
+  const [setSession] = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -12,7 +15,7 @@ const Register = () => {
     new Date().toISOString().slice(0, 10)
   );
 
-  const registerUser = (event) => {
+  function registerUser(event) {
     event.preventDefault();
     const newUser = {
       email: email,
@@ -22,7 +25,7 @@ const Register = () => {
       lastname: lastname,
       birthdate: birthdate,
     };
-    createUser(newUser);
+    const value = CreateUser(newUser, setSession);
   };
 
   return (

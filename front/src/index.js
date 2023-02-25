@@ -4,15 +4,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ExpensesContextProvider } from "./context/expenseContext";
 import { UserContextProvider } from "./context/userContext";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <UserContextProvider>
-      <ExpensesContextProvider>
-        <App />
-      </ExpensesContextProvider>
-    </UserContextProvider>
+    <BrowserRouter>
+      <UserContextProvider>
+        <ExpensesContextProvider>
+          <App />
+        </ExpensesContextProvider>
+      </UserContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
