@@ -6,8 +6,8 @@ defmodule ExpenseAppWeb.AssessmentController do
   alias ExpenseApp.Assessment
 
   @spec index(Plug.Conn.t(), map()) :: Plug.Conn.t()
-  def index(conn, _params) do
-    expenses = Assessment.list_expenses() |> format_money_type()
+  def index(conn, %{"user_id" => user_id}) do
+    expenses = user_id |> Assessment.get_expenses_for_user() |> format_money_type()
 
     json(conn, expenses)
   end

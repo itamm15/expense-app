@@ -14,8 +14,8 @@ export function getSession() {
   return { userEmail, userPassword, userId };
 }
 
-export function setUserSession(email, password, userId) {
+export function setUserSession({email, password, id}) {
   localStorage.setItem("email", email);
   localStorage.setItem("password", password);
-  localStorage.setItem("id", userId);
+  localStorage.setItem("id", id);
 }

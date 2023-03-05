@@ -14,6 +14,13 @@ defmodule ExpenseApp.Context.Expenses do
     |> Repo.one()
   end
 
+  @spec get_expenses_for_user(User.id()) :: [Expense.t()]
+  def get_expenses_for_user(user_id) do
+    Expense
+    |> where([expense], expense.user_id == ^user_id)
+    |> Repo.all()
+  end
+
   @spec list_expenses() :: list(Expense.t())
   def list_expenses do
     Expense

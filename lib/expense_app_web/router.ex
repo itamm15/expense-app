@@ -16,7 +16,7 @@ defmodule ExpenseAppWeb.Router do
   scope "/api", ExpenseAppWeb do
     pipe_through :api
 
-    get "/expenses", AssessmentController, :index
+    get "/expenses/:user_id", AssessmentController, :index
     post "/expenses", AssessmentController, :create
     delete "/expenses/:id", AssessmentController, :delete
 

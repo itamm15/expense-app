@@ -1,7 +1,7 @@
-export const fetchExpenses = (setExpensesList, setError, setIsLoading) => {
+export const fetchExpenses = (userId, setExpensesList, setError, setIsLoading) => {
   const abortController = new AbortController();
 
-  fetch("/expenses", {
+  fetch(`/expenses/${userId}`, {
     method: "GET",
     headers: { "Content-type": "application/json" },
     signal: abortController.signal,
