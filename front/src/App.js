@@ -3,15 +3,16 @@ import ExpenseList from "./components/ExpenseList";
 import useExpenses from "./context/expenseContext";
 import ExpenseChart from "./components/ExpenseChart";
 import history from "history/browser";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
-import { useState } from "react";
-import { UserContextProvider, useUser } from "./context/userContext";
+import { Routes, Route, Navigate, Outlet, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useUser } from "./context/userContext";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
 function App() {
+  const navigate = useNavigate();
   const { expensesList } = useExpenses();
-  const [session] = useUser();
+  const { session } = useUser();
   const [searchedDescription, setSearchedDescription] = useState("");
 
   const filterExpenses = () => {
@@ -24,11 +25,14 @@ function App() {
   };
 
   const RequireLogged = () => {
-    if (session === undefined) return <Navigate to="register" replace />
+    console.log(session, "session from requireLogged");
+    if (session === undefined) {
+      return <Navigate to="/register" replace />
+    }
+    return <Outlet />
   }
 
   return (
-    <UserContextProvider>
       <Routes history={history}>
         <Route element={<RequireLogged />} >
           <Route
@@ -48,7 +52,6 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Routes>
-    </UserContextProvider>
   );
 }
 

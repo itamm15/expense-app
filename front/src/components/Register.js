@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/userContext";
 import CreateUser from "../hooks/user/CreateUser";
 import "../styles/Register.scss";
+import { setUserSession } from "../Utils";
 
 const Register = () => {
-  const [setSession] = useUser();
+  const { setSession } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -14,6 +15,8 @@ const Register = () => {
   const [birthdate, setBirthdate] = useState(
     new Date().toISOString().slice(0, 10)
   );
+
+  const navigate = useNavigate();
 
   function registerUser(event) {
     event.preventDefault();
@@ -25,7 +28,14 @@ const Register = () => {
       lastname: lastname,
       birthdate: birthdate,
     };
-    const value = CreateUser(newUser, setSession);
+    CreateUser(newUser, setUserSession).then(({response, errors}) => {
+      if (response === "CREATED") {
+        setSession({ email: email, password: password });
+        navigate('/');
+      }
+      console.log(response, "response")
+      console.log(errors, "errors")
+    });
   };
 
   return (

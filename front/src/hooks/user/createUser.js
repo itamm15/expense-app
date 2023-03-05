@@ -1,4 +1,4 @@
-export default async function CreateUser(newUser, setSession) {
+export default async function CreateUser(newUser, setUserSession) {
   return await fetch("/users", {
     method: "POST",
     headers: { "Content-type": "application/json" },
@@ -6,10 +6,17 @@ export default async function CreateUser(newUser, setSession) {
   })
     .then((response) => response.json())
     .then((response) => {
-      setSession(response.email, response.password);
-      return "CREATED";
+      if (response.errors) {
+        return {
+          response: "FAILED",
+          errors: response.errors,
+        }
+      }
+      setUserSession(response.email, response.password);
+      return { response: "CREATED" };
     })
-    .catch((response) => {
+    .catch((error) => {
+      console.error(`Could not create account, ${error}`)
       return "FAILED";
     });
 }

@@ -9,11 +9,11 @@ export function getSession() {
   // TODO: In future encrypt both data and store it on backend
   const userEmail = localStorage.getItem("email");
   const userPassword = localStorage.getItem("password");
-  if (userEmail === null) return undefined;
+  if (userEmail === null || userPassword === null) return undefined;
   return { userEmail, userPassword };
 }
 
-export function setSession(email, password) {
+export function setUserSession(email, password) {
   localStorage.setItem("email", email);
   localStorage.setItem("password", password);
 }
