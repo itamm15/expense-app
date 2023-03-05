@@ -28,16 +28,16 @@ const Register = () => {
       lastname: lastname,
       birthdate: birthdate,
     };
-    CreateUser(newUser, setUserSession).then(({response, errors, values}) => {
+    CreateUser(newUser, setUserSession).then(({ response, errors, values }) => {
       if (response === "CREATED") {
         setSession(values);
-        navigate('/');
+        navigate("/");
       }
       for (const error in errors) {
         document.getElementsByClassName(error)[0].innerText = errors[error];
       }
     });
-  };
+  }
 
   return (
     <div className="main-view">

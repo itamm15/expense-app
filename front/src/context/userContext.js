@@ -9,13 +9,14 @@ export function useUser() {
 
 export const UserContextProvider = ({ children }) => {
   const [session, setSession] = useState(getSession());
-  const newSession = getSession();
 
   useEffect(() => {
-    setSession(newSession);
-  }, [])
+    setSession(getSession());
+  }, []);
 
   return (
-    <UserContext.Provider value={{session, setSession}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ session, setSession }}>
+      {children}
+    </UserContext.Provider>
   );
 };

@@ -10,11 +10,12 @@ export function getSession() {
   const userEmail = localStorage.getItem("email");
   const userPassword = localStorage.getItem("password");
   const userId = localStorage.getItem("id");
-  if (userEmail === null || userPassword === null || userId === null) return undefined;
+  if (userEmail === null || userPassword === null || userId === null)
+    return undefined;
   return { userEmail, userPassword, userId };
 }
 
-export function setUserSession({email, password, id}) {
+export function setUserSession({ email, password, id }) {
   localStorage.setItem("email", email);
   localStorage.setItem("password", password);
   localStorage.setItem("id", id);

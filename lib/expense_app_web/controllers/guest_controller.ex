@@ -11,7 +11,6 @@ defmodule ExpenseAppWeb.GuestController do
         json(conn, created_user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
-
         conn
         |> put_view(ExpenseAppWeb.ErrorView)
         |> render("error.json", changeset: changeset)

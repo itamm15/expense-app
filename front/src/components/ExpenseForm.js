@@ -28,7 +28,9 @@ const ExpenseForm = ({
   actionType,
   expenseToUpdate,
 }) => {
-  const { session: { userId } } = useUser();
+  const {
+    session: { userId },
+  } = useUser();
   const { expensesList, setExpensesList } = useExpenses();
   const [expenseAmount, setExpenseAmount] = useState();
   const [expenseDescription, setExpenseDescription] = useState();
@@ -54,7 +56,7 @@ const ExpenseForm = ({
       amount: expenseAmount,
       description: expenseDescription,
       type: expenseType,
-      user_id: userId
+      user_id: userId,
     };
 
     if (actionType === UPDATE) {

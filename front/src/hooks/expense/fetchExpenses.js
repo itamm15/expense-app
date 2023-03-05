@@ -1,4 +1,9 @@
-export const fetchExpenses = (userId, setExpensesList, setError, setIsLoading) => {
+export const fetchExpenses = (
+  userId,
+  setExpensesList,
+  setError,
+  setIsLoading
+) => {
   const abortController = new AbortController();
 
   fetch(`/expenses/${userId}`, {
