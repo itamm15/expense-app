@@ -44,9 +44,14 @@ body {
 }
 
 .registration-title {
+  color: black !important;
   font-size: 26px;
 }
 
 .submit {
   margin-top: 8px;
+}
+
+span {
+  color: red;
 }

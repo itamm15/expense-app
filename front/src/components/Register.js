@@ -33,8 +33,9 @@ const Register = () => {
         setSession({ email: email, password: password });
         navigate('/');
       }
-      console.log(response, "response")
-      console.log(errors, "errors")
+      for (const error in errors) {
+        document.getElementsByClassName(error)[0].innerText = errors[error];
+      }
     });
   };
 
@@ -58,6 +59,7 @@ const Register = () => {
               className="form-control"
               placeholder="Firstname"
             />
+            <span className="firstname"></span>
           </div>
           <div className="form-group">
             <label>Lastname</label>
@@ -67,6 +69,7 @@ const Register = () => {
               className="form-control"
               placeholder="Lastname"
             />
+            <span className="lastname"></span>
           </div>
           <div className="form-group">
             <label>Email address</label>
@@ -76,6 +79,7 @@ const Register = () => {
               className="form-control"
               placeholder="Email address"
             />
+            <span className="email"></span>
           </div>
           <div className="form-group">
             <label>Password</label>
@@ -85,6 +89,7 @@ const Register = () => {
               className="form-control"
               placeholder="Password"
             />
+            <span className="password"></span>
           </div>
           <div className="form-group">
             <label>Password confirmation</label>
@@ -94,6 +99,7 @@ const Register = () => {
               className="form-control"
               placeholder="Password confirmation"
             />
+            <span className="password_confirmation"></span>
           </div>
           <div className="form-group">
             <label>Birthdate</label>
@@ -102,6 +108,7 @@ const Register = () => {
               onChange={(event) => setBirthdate(event.target.value)}
               className="form-control"
             />
+            <span className="birthdate"></span>
           </div>
           <div className="submit">
             <button
