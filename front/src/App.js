@@ -24,7 +24,6 @@ function App() {
   };
 
   const RequireLogged = () => {
-    console.log(session, "session from requireLogged");
     if (session === undefined) {
       return <Navigate to="/register" replace />;
     }
