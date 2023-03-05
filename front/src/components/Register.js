@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CREATED } from "../constants/actions";
 import { useUser } from "../context/userContext";
 import CreateUser from "../hooks/user/CreateUser";
 import "../styles/Register.scss";
@@ -29,7 +30,7 @@ const Register = () => {
       birthdate: birthdate,
     };
     CreateUser(newUser, setUserSession).then(({ response, errors, values }) => {
-      if (response === "CREATED") {
+      if (response === CREATED) {
         setSession(values);
         navigate("/");
       }
