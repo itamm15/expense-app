@@ -9,16 +9,16 @@ export function useExpenses() {
 }
 
 export const ExpensesContextProvider = ({ children }) => {
-  const {
-    session: { userId },
-  } = useUser();
+  const { session } = useUser();
   const [expensesList, setExpensesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchExpenses(userId, setExpensesList, setError, setIsLoading);
-  }, [userId]);
+    if (session) {
+      fetchExpenses(session.userId, setExpensesList, setError, setIsLoading);
+    }
+  }, [session]);
 
   const value = {
     expensesList,

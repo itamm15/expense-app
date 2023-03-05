@@ -1,14 +1,24 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import "../styles/Navbar.scss";
 import { useState } from "react";
 import Settings from "./Settings";
+import { destroySession } from "../Utils";
+import { useUser } from "../context/userContext";
 
 const NavBar = ({ searchedDescription, setSearchedDescription }) => {
+  const navigate = useNavigate();
+  const { setSession } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenSettings = (event) => {
     event.preventDefault();
     setIsModalOpen(true);
+  };
+
+  const clearSession = () => {
+    setSession(undefined);
+    destroySession();
+    return navigate("/register");
   };
 
   return (
@@ -51,6 +61,11 @@ const NavBar = ({ searchedDescription, setSearchedDescription }) => {
             <FiSettings size={30} />
           </button>
           <Settings isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+        </li>
+        <li className="nav-item my-1 logout">
+          <button className="logout-button" onClick={clearSession}>
+            <h5>Logout</h5>
+          </button>
         </li>
       </ul>
       <Outlet />

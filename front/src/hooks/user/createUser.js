@@ -11,7 +11,7 @@ export default async function CreateUser(newUser, setUserSession) {
       const values = {
         email: response.email,
         password: response.password,
-        id: response.id,
+        userId: response.id,
       };
 
       if (response.errors) {

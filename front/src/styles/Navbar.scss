@@ -2,7 +2,7 @@
   width: 30%;
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .link {
@@ -23,6 +23,16 @@
 }
 
 .settings-button {
+  border: none;
+  background-color: #f8f9fa;
+}
+
+.logout {
+  width: 5%;
+  display: flex;
+}
+
+.logout-button {
   border: none;
   background-color: #f8f9fa;
 }
