@@ -3,9 +3,9 @@ defmodule ExpenseApp.Expense do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required [:id, :description, :type, :amount, :date, :currency]
+  @required [:description, :type, :amount, :date, :currency, :user_id]
 
-  @derive {Jason.Encoder, only: @required}
+  @derive {Jason.Encoder, only: @required ++ [:id]}
   schema "expenses" do
     field :description, :string
     field :type, Ecto.Enum, values: [:income, :outcome]
@@ -22,6 +22,7 @@ defmodule ExpenseApp.Expense do
   def changeset(expense, attrs) do
     expense
     |> cast(attrs, @required)
+    |> cast_assoc(:user)
     |> validate_required(@required)
   end
 end

@@ -4,6 +4,7 @@ import useExpenses from "../context/expenseContext";
 import { UPDATE } from "../constants/actions";
 import createExpense from "../hooks/expense/createExpense";
 import updateExpense from "../hooks/expense/updateExpense";
+import { useUser } from "../context/userContext";
 
 const styleModal = {
   content: {
@@ -27,6 +28,7 @@ const ExpenseForm = ({
   actionType,
   expenseToUpdate,
 }) => {
+  const { session: { userId } } = useUser();
   const { expensesList, setExpensesList } = useExpenses();
   const [expenseAmount, setExpenseAmount] = useState();
   const [expenseDescription, setExpenseDescription] = useState();
@@ -52,6 +54,7 @@ const ExpenseForm = ({
       amount: expenseAmount,
       description: expenseDescription,
       type: expenseType,
+      user_id: userId
     };
 
     if (actionType === UPDATE) {
