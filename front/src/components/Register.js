@@ -28,9 +28,9 @@ const Register = () => {
       lastname: lastname,
       birthdate: birthdate,
     };
-    CreateUser(newUser, setUserSession).then(({response, errors}) => {
+    CreateUser(newUser, setUserSession).then(({response, errors, values}) => {
       if (response === "CREATED") {
-        setSession({ email: email, password: password });
+        setSession(values);
         navigate('/');
       }
       for (const error in errors) {

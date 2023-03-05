@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { fetchExpenses } from "../hooks/expense/fetchExpenses";
+import { useUser } from "./userContext";
 
 const ExpensesContext = createContext();
 
@@ -8,6 +9,7 @@ export function useExpenses() {
 }
 
 export const ExpensesContextProvider = ({ children }) => {
+  const { session } = useUser();
   const [expensesList, setExpensesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);

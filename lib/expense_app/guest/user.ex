@@ -6,7 +6,7 @@ defmodule ExpenseApp.User do
   @required [:firstname, :lastname, :birthdate, :password, :password_confirmation, :email]
   @optional [:currency]
 
-  @derive {Jason.Encoder, only: @required ++ @optional}
+  @derive {Jason.Encoder, only: @required ++ @optional ++ [:id]}
   schema "users" do
     field :password, :string
     field :password_confirmation, :string
