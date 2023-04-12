@@ -10,7 +10,7 @@ env:
 jobs:
   build:
     name: Build and test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     env:
       ImageOs: ubuntu18.04
     steps:
