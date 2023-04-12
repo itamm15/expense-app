@@ -11,14 +11,9 @@ jobs:
   build:
     name: Build and test
     runs-on: ubuntu-20.04
-    services:
-      postgres:
-        image: postgres
-        ports: 5432:5432
-        env:
-          POSTGRES_PASSWORD: postrges
-          POSTGRES_USER: postgres
     env:
+      POSTGRES_PASSWORD: postrges
+      POSTGRES_USER: postgres
       ImageOs: ubuntu18.04
     steps:
     - uses: actions/checkout@v3
