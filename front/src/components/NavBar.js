@@ -10,6 +10,7 @@ const NavBar = ({ searchedDescription, setSearchedDescription }) => {
   const navigate = useNavigate();
   const { setSession } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleOpenSettings = (event) => {
     event.preventDefault();
     setIsModalOpen(true);
@@ -40,21 +41,6 @@ const NavBar = ({ searchedDescription, setSearchedDescription }) => {
               Exchange
             </Link>
           </h5>
-        </li>
-        <li className="nav-item my-2 search-bar">
-          <form
-            className="form-inline d-flex"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              className="form-control"
-              type="search"
-              placeholder="Search description"
-              aria-label="Search"
-              value={searchedDescription}
-              onChange={(event) => setSearchedDescription(event.target.value)}
-            />
-          </form>
         </li>
         <li className="nav-item my-2 settings">
           <button className="settings-button" onClick={handleOpenSettings}>
