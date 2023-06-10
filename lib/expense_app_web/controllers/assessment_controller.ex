@@ -48,6 +48,6 @@ defmodule ExpenseAppWeb.AssessmentController do
 
   @spec format_money_type([Expense.t()]) :: [Expense.t()]
   defp format_money_type(expenses_list) do
-    Enum.map(expenses_list, &format_money_typ(&1))
+    Enum.map(expenses_list, &format_money_type(&1))
   end
 end
