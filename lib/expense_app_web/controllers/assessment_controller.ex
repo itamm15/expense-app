@@ -42,7 +42,7 @@ defmodule ExpenseAppWeb.AssessmentController do
 
   @spec format_money_type(Expense.t()) :: Expense.t()
   defp format_money_type(%Expense{} = expense) do
-    amount = Money.to_string(expense.amount)
+    amount = Money.to_string(expense.amount, symbol: false)
     Map.put(expense, :amount, amount)
   end
 
