@@ -1,9 +1,8 @@
 defmodule ExpenseApp.Context.Users do
   @moduledoc false
-  # imports
+
   import Ecto.Query
 
-  # aliases
   alias ExpenseApp.User
   alias ExpenseApp.Repo
 

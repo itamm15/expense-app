@@ -4,8 +4,8 @@ defmodule ExpenseApp.Expense do
   import Ecto.Changeset
 
   @required [:description, :type, :amount, :date, :currency, :user_id]
-
   @derive {Jason.Encoder, only: @required ++ [:id]}
+
   schema "expenses" do
     field :description, :string
     field :type, Ecto.Enum, values: [:income, :outcome]
@@ -13,11 +13,13 @@ defmodule ExpenseApp.Expense do
     field :date, :date
     field :currency, :string, default: "EUR"
 
-    ### ASSOCIATIONS ###
     belongs_to :user, ExpenseApp.User
 
     timestamps()
   end
+
+  @type id :: integer()
+  @type t :: %__MODULE__{id: id()}
 
   def changeset(expense, attrs) do
     expense
