@@ -26,5 +26,6 @@ defmodule ExpenseApp.User do
     user
     |> cast(attrs, @required ++ @optional)
     |> validate_required(@required)
+    |> unique_constraint(:email, message: "This email is already taken!")
   end
 end
