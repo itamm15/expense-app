@@ -16,11 +16,13 @@ defmodule ExpenseApp.User do
     field :lastname, :string
     field :currency, :string, default: "PLN"
 
-    ### ASSOCIATIONS ###
     has_many :expenses, ExpenseApp.Expense
 
     timestamps()
   end
+
+  @type id :: integer()
+  @type t :: %__MODULE__{id: id()}
 
   def changeset(user, attrs) do
     user

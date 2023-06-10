@@ -3,7 +3,6 @@ defmodule ExpenseApp.Assessment do
   Module responsible for handling expenses.
   """
 
-  # aliases
   alias ExpenseApp.Context.Expenses
 
   defdelegate get_expense(id), to: Expenses

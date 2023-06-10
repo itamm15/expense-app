@@ -3,7 +3,6 @@ defmodule ExpenseApp.Guest do
   Module responsible for handling user.
   """
 
-  # aliases
   alias ExpenseApp.Context.Users
 
   defdelegate create_user(user), to: Users
