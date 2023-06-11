@@ -88,13 +88,13 @@ jobs:
       - name: Setup front
         uses: actions/cache@v3
         with:
-          path: assets/node_modules
+          path: front/node_modules
           key: node-${{ runner.os }}-${{ hashFiles('assets/package-lock.json') }}
 
       - name: Install node modules
-        working-directory: ./assets
+        working-directory: ./fron
         run: npm install --force
 
       - name: Run ESLint and Prettier Check
-        working-directory: ./assets
+        working-directory: ./front
         run: npm run check-formatting
