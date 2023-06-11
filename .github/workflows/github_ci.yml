@@ -60,6 +60,9 @@ jobs:
     - name: Run tests
       run: mix test
 
+    - name: Check credo
+      run: mix credo --strict
+
     - name: Create PLTs
       if: steps.plt_cache.outputs.cache-hit != 'true'
       run: mix dialyzer --plt
