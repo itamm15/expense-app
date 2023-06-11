@@ -24,7 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "check-formatting": "npx prettier --check ."
   },
   "proxy": "http://localhost:4000/api",
   "eslintConfig": {

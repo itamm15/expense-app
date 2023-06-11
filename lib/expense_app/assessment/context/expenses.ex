@@ -5,6 +5,7 @@ defmodule ExpenseApp.Context.Expenses do
 
   alias ExpenseApp.Expense
   alias ExpenseApp.Repo
+  alias ExpenseApp.User
 
   @spec get_expense(Expense.id()) :: Expense.t()
   def get_expense(id) do
@@ -33,7 +34,8 @@ defmodule ExpenseApp.Context.Expenses do
     |> Repo.insert()
   end
 
-  @spec delete_expense(Expense.t() | Expense.id()) :: {:ok, Expense.t()} | {:error, Ecto.Changeset.t()}
+  @spec delete_expense(Expense.t() | Expense.id()) ::
+          {:ok, Expense.t()} | {:error, Ecto.Changeset.t()}
   def delete_expense(id) when is_binary(id) do
     id
     |> String.to_integer()

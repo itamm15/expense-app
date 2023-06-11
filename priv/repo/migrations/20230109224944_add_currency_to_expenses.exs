@@ -3,7 +3,7 @@ defmodule ExpenseApp.Repo.Migrations.AddCurrencyToExpenses do
 
   def change do
     alter table(:expenses) do
-      add :currency, :string, default: "EUR"
+      add :currency, :string
     end
   end
 end

@@ -13,6 +13,7 @@ defmodule ExpenseApp.DataCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL
 
   using do
     quote do
@@ -26,10 +27,10 @@ defmodule ExpenseApp.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ExpenseApp.Repo)
+    :ok = SQL.Sandbox.checkout(ExpenseApp.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ExpenseApp.Repo, {:shared, self()})
+      SQL.Sandbox.mode(ExpenseApp.Repo, {:shared, self()})
     end
 
     :ok

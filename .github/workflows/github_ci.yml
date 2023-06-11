@@ -34,14 +34,69 @@ jobs:
     - name: Restore dependencies cache
       uses: actions/cache@v3
       with:
-        path: deps
-        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        path: |
+          deps
+          _build
+          priv/plts
+        key: ${{ runner.os }}-mix-${{ hashFiles('mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
       run: mix deps.get
+
+    - name: Compile
+      run: mix compile
+
     - name: Setup database
       run: |
         mix ecto.create
         mix ecto.migrate
+
+    - name: Check formatter
+      run: mix format --dry-run --check-formatted
+
+    - name: Check migrations correctness
+      run: mix excellent_migrations.check_safety
+
     - name: Run tests
       run: mix test
+
+    - name: Check credo
+      run: mix credo --strict
+
+    - name: Create PLTs
+      if: steps.plt_cache.outputs.cache-hit != 'true'
+      run: mix dialyzer --plt
+
+    - name: Save PLT cache
+      id: plt_cache_save
+      uses: actions/cache/save@v3
+      if: steps.plt_cache.outputs.cache-hit != 'true'
+      with:
+        key: |
+          plt-${{ runner.os }}-${{ steps.beam.outputs.otp-version }}-${{ steps.beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        path: |
+          priv/plts
+
+    - name: Check dialyzer
+      run: mix dialyzer --format github --no-check
+
+  frontend-check:
+    name: Front checks
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup front
+        uses: actions/cache@v3
+        with:
+          path: front/node_modules
+          key: node-${{ runner.os }}-${{ hashFiles('assets/package-lock.json') }}
+
+      - name: Install node modules
+        working-directory: ./front
+        run: npm install --force
+
+      - name: Run Prettier Check
+        working-directory: ./front
+        run: npm run check-formatting
+
+      # Configure ESLint later on
