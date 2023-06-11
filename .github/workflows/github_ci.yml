@@ -47,5 +47,7 @@ jobs:
       run: mix format --dry-run --check-formatted
     - name: Check dialyzer
       run: mix dialyzer --format github --no-check
+    - name: Check migrations correctness
+      run: mix excellent_migrations.check_safety
     - name: Run tests
       run: mix test
