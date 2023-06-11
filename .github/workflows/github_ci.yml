@@ -92,7 +92,7 @@ jobs:
           key: node-${{ runner.os }}-${{ hashFiles('assets/package-lock.json') }}
 
       - name: Install node modules
-        working-directory: ./fron
+        working-directory: ./front
         run: npm install --force
 
       - name: Run ESLint and Prettier Check
