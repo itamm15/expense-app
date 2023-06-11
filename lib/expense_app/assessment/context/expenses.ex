@@ -3,9 +3,9 @@ defmodule ExpenseApp.Context.Expenses do
 
   import Ecto.Query
 
-  alias ExpenseApp.User
   alias ExpenseApp.Expense
   alias ExpenseApp.Repo
+  alias ExpenseApp.User
 
   @spec get_expense(Expense.id()) :: Expense.t()
   def get_expense(id) do

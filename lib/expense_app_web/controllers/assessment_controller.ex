@@ -1,8 +1,8 @@
 defmodule ExpenseAppWeb.AssessmentController do
   use ExpenseAppWeb, :controller
 
-  alias ExpenseApp.Expense
   alias ExpenseApp.Assessment
+  alias ExpenseApp.Expense
 
   @spec index(Plug.Conn.t(), Plug.Conn.params()) :: Plug.Conn.t()
   def index(conn, %{"user_id" => user_id}) do
