@@ -57,7 +57,11 @@ jobs:
     - name: Check migrations correctness
       run: mix excellent_migrations.check_safety
 
+    - name: Run tests
+      run: mix test
+
     - name: Create PLTs
+      if: steps.plt_cache.outputs.cache-hit != 'true'
       run: mix dialyzer --plt
 
     - name: Save PLT cache
@@ -72,6 +76,3 @@ jobs:
 
     - name: Check dialyzer
       run: mix dialyzer --format github --no-check
-
-    - name: Run tests
-      run: mix test
