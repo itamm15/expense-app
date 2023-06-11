@@ -43,5 +43,7 @@ jobs:
       run: |
         mix ecto.create
         mix ecto.migrate
+    - name: Check formatter
+      run: mix format --dry-run --check-formatted
     - name: Run tests
       run: mix test
