@@ -81,7 +81,7 @@ jobs:
       run: mix dialyzer --format github --no-check
 
   frontend-check:
-    name: Prettier checks
+    name: Front checks
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -95,6 +95,8 @@ jobs:
         working-directory: ./front
         run: npm install --force
 
-      - name: Run ESLint and Prettier Check
+      - name: Run Prettier Check
         working-directory: ./front
         run: npm run check-formatting
+
+      # Configure ESLint later on
