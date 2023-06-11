@@ -12,6 +12,7 @@ defmodule ExpenseApp.MixProject do
       aliases: aliases(),
       deps: deps(),
       dialyzer: [
+        plt_add_apps: [:mix, :ex_unit],
         plt_file: {:no_warn, "priv/plts/project.plt"}
       ]
     ]
