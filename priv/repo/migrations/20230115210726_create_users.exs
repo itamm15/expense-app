@@ -1,7 +1,7 @@
 defmodule ExpenseApp.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
-  def up do
+  def change do
     create table(:users) do
       add :firstname, :string, null: false
       add :lastname, :string, null: false
@@ -10,9 +10,5 @@ defmodule ExpenseApp.Repo.Migrations.CreateUsers do
 
       timestamps()
     end
-  end
-
-  def down do
-    drop table(:users)
   end
 end

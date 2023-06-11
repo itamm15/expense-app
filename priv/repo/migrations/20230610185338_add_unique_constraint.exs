@@ -1,11 +1,10 @@
 defmodule ExpenseApp.Repo.Migrations.AddUniqueConstraint do
   use Ecto.Migration
 
-  def up do
-    create unique_index(:users, [:email])
-  end
+  @disable_ddl_transaction true
+  @disable_migration_lock true
 
-  def down do
-    drop unique_index(:users, [:email])
+  def change do
+    create unique_index(:users, [:email], concurrently: true)
   end
 end
