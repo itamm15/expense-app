@@ -42,6 +42,20 @@ jobs:
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
       run: mix deps.get
+
+    - name: Create PLTs
+      if: steps.plt_cache.outputs.cache-hit != 'true'
+      run: mix dialyzer --plt
+    - name: Save PLT cache
+      id: plt_cache_save
+      uses: actions/cache/save@v3
+      if: steps.plt_cache.outputs.cache-hit != 'true'
+      with:
+        key: |
+          plt-${{ runner.os }}-${{ steps.beam.outputs.otp-version }}-${{ steps.beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        path: |
+          priv/plts
+
     - name: Setup database
       run: |
         mix ecto.create
