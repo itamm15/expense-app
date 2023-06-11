@@ -13,7 +13,7 @@ defmodule ExpenseApp.Context.Users do
     |> Repo.one()
   end
 
-  @spec create_user(map()) :: User.t()
+  @spec create_user(map()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
   def create_user(user) do
     %User{}
     |> User.changeset(user)

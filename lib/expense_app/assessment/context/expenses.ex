@@ -3,6 +3,7 @@ defmodule ExpenseApp.Context.Expenses do
 
   import Ecto.Query
 
+  alias ExpenseApp.User
   alias ExpenseApp.Expense
   alias ExpenseApp.Repo
 
@@ -33,7 +34,8 @@ defmodule ExpenseApp.Context.Expenses do
     |> Repo.insert()
   end
 
-  @spec delete_expense(Expense.t() | Expense.id()) :: {:ok, Expense.t()} | {:error, Ecto.Changeset.t()}
+  @spec delete_expense(Expense.t() | Expense.id()) ::
+          {:ok, Expense.t()} | {:error, Ecto.Changeset.t()}
   def delete_expense(id) when is_binary(id) do
     id
     |> String.to_integer()

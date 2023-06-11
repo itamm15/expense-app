@@ -45,5 +45,7 @@ jobs:
         mix ecto.migrate
     - name: Check formatter
       run: mix format --dry-run --check-formatted
+    - name: Check dialyzer
+      run: mix dialyzer --format github --no-check
     - name: Run tests
       run: mix test
