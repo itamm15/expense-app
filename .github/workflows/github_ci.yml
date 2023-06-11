@@ -79,3 +79,22 @@ jobs:
 
     - name: Check dialyzer
       run: mix dialyzer --format github --no-check
+
+  frontend-check:
+    name: Prettier checks
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup front
+        uses: actions/cache@v3
+        with:
+          path: assets/node_modules
+          key: node-${{ runner.os }}-${{ hashFiles('assets/package-lock.json') }}
+
+      - name: Install node modules
+        working-directory: ./assets
+        run: npm install --force
+
+      - name: Run ESLint and Prettier Check
+        working-directory: ./assets
+        run: npm run check-formatting
