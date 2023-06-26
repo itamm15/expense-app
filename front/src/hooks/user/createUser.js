@@ -1,6 +1,6 @@
 import { CREATED, FAILED } from "../../constants/actions";
 
-export default async function CreateUser(newUser, setUserSession) {
+export default async function createUser(newUser, setUserSession) {
   return await fetch("/users", {
     method: "POST",
     headers: { "Content-type": "application/json" },
