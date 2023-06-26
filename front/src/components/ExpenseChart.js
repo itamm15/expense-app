@@ -1,16 +1,12 @@
-import Chart from "chart.js/auto";
+import "chart.js/auto";
 import currency from "currency.js";
+import "../styles/ExpenseChart.scss";
 import { Bar } from "react-chartjs-2";
 import { INCOME } from "../constants/expenseTypes";
 import { getMonthName } from "../Utils";
 
 const ExpenseChart = (expensesList) => {
   const { incomeSum, outcomeSum } = sumExpensesByDateAndType(expensesList);
-  const chartStyles = {
-    display: "flex",
-    justifyContent: "center",
-    height: "300px",
-  };
   const data = {
     labels: [
       "january",
@@ -42,7 +38,7 @@ const ExpenseChart = (expensesList) => {
     ],
   };
   return (
-    <div style={chartStyles}>
+    <div className="expense-chart__display-chart">
       <Bar data={data} height={300} width={1000} />
     </div>
   );
