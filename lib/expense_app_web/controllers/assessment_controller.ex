@@ -40,14 +40,13 @@ defmodule ExpenseAppWeb.AssessmentController do
 
   ##### PRIVATE #####
 
-  @spec format_money_type(Expense.t()) :: Expense.t()
+  @spec format_money_type([Expense.t()] | Expense.t()) :: [Expense.t()] | Expense.t()
+  defp format_money_type(expenses_list) when is_list(expenses_list) do
+    Enum.map(expenses_list, &format_money_type(&1))
+  end
+
   defp format_money_type(%Expense{} = expense) do
     amount = Money.to_string(expense.amount, symbol: false)
     Map.put(expense, :amount, amount)
-  end
-
-  @spec format_money_type([Expense.t()]) :: [Expense.t()]
-  defp format_money_type(expenses_list) do
-    Enum.map(expenses_list, &format_money_type(&1))
   end
 end
