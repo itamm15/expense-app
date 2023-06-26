@@ -23,14 +23,8 @@ function App() {
   return (
     <Routes history={history}>
       <Route element={<RequireLogged />}>
-        <Route
-          path="/"
-          element={<NavBar />}
-        >
-          <Route
-            index
-            element={<ExpenseList expensesList={expensesList} />}
-          />
+        <Route path="/" element={<NavBar />}>
+          <Route index element={<ExpenseList expensesList={expensesList} />} />
           <Route
             path="charts"
             element={<ExpenseChart expensesList={expensesList} />}

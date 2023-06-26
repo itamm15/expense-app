@@ -64,7 +64,7 @@ const ExpenseList = ({ expensesList }) => {
     const total = sumOfExpenses(filteredExpenses);
     setExpenses(filteredExpenses);
     setExpensesSum(total);
-  }, [searchedDescription, setSearchedDescription, filterExpenses])
+  }, [searchedDescription, setSearchedDescription, filterExpenses]);
 
   return (
     <div className="table-view">
