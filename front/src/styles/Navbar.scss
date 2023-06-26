@@ -1,19 +1,13 @@
 .pages-links {
-  width: 30%;
+  width: 70%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: flex-end;
 }
 
 .link {
   text-decoration: none;
   color: black;
-}
-
-.search-bar {
-  width: 40%;
-  display: flex;
-  justify-content: flex-end;
 }
 
 .settings {
@@ -35,4 +29,24 @@
 .logout-button {
   border: none;
   background-color: #f8f9fa;
+}
+
+.control-panel {
+  display: flex;
+}
+
+.control-panel__filter-expense {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.control-panel__actions-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.filter-expense {
+  width: 80%;
 }

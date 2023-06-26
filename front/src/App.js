@@ -12,16 +12,6 @@ import Register from "./components/Register";
 function App() {
   const { expensesList } = useExpenses();
   const { session } = useUser();
-  const [searchedDescription, setSearchedDescription] = useState("");
-
-  const filterExpenses = () => {
-    if (searchedDescription === "") return expensesList;
-    return expensesList.filter(({ description }) => {
-      return description
-        .toLowerCase()
-        .includes(searchedDescription.toLowerCase());
-    });
-  };
 
   const RequireLogged = () => {
     if (session === undefined) {
@@ -33,19 +23,8 @@ function App() {
   return (
     <Routes history={history}>
       <Route element={<RequireLogged />}>
-        <Route
-          path="/"
-          element={
-            <NavBar
-              searchedDescription={searchedDescription}
-              setSearchedDescription={setSearchedDescription}
-            />
-          }
-        >
-          <Route
-            index
-            element={<ExpenseList expensesList={filterExpenses()} />}
-          />
+        <Route path="/" element={<NavBar />}>
+          <Route index element={<ExpenseList expensesList={expensesList} />} />
           <Route
             path="charts"
             element={<ExpenseChart expensesList={expensesList} />}
