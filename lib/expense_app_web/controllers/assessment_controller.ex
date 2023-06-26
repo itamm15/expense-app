@@ -16,10 +16,13 @@ defmodule ExpenseAppWeb.AssessmentController do
     case Assessment.create_expense(params) do
       {:ok, created_expense} ->
         created_expense = format_money_type(created_expense)
-        json(conn, created_expense)
+        conn
+        |> put_status(201)
+        |> json(created_expense)
 
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
+        |> put_status(400)
         |> put_view(ExpenseAppWeb.ErrorView)
         |> render("error.json", changeset: changeset)
     end
@@ -29,10 +32,13 @@ defmodule ExpenseAppWeb.AssessmentController do
   def delete(conn, %{"id" => id}) do
     case Assessment.delete_expense(id) do
       {:ok, _deleted_expense} ->
-        json(conn, "Deleted")
+        conn
+        |> put_status(200)
+        |> json("Deleted")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
+        |> put_status(400)
         |> put_view(ExpenseAppWeb.ErrorView)
         |> render("error.json", changeset: changeset)
     end
