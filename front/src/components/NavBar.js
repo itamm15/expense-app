@@ -6,7 +6,7 @@ import Settings from "./Settings";
 import { destroySession } from "../Utils";
 import { useUser } from "../context/userContext";
 
-const NavBar = ({ searchedDescription, setSearchedDescription }) => {
+const NavBar = () => {
   const navigate = useNavigate();
   const { setSession } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
