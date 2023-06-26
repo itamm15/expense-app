@@ -71,35 +71,33 @@ const ExpenseList = ({ expensesList }) => {
       {error && <h2 className="error">{displayErrorOrNoExpensesMessage()}</h2>}
       {!error && expensesList && (
         <>
-          <div className="action-buttons">
-            <button
-              className="btn btn-warning"
-              value={INCOME}
-              onClick={createExpense}
-            >
-              Create income
-            </button>
-            <button
-              className="btn btn-danger create-outcome"
-              value={OUTCOME}
-              onClick={createExpense}
-            >
-              Create outcome
-            </button>
-            <ExpenseForm
-              isModalOpen={isModalOpen}
-              setIsModalOpen={setIsModalOpen}
-              expenseType={expenseType}
-              actionType={actionType}
-            />
-            <input
-              className="form-control"
-              type="search"
-              placeholder="Search description"
-              aria-label="Search"
-              value={searchedDescription}
-              onChange={(event) => setSearchedDescription(event.target.value)}
-            />
+          <div className="control-panel">
+            <div className="control-panel__filter-expense">
+              <input
+                className="form-control filter-expense"
+                type="search"
+                placeholder="Search description"
+                aria-label="Search"
+                value={searchedDescription}
+                onChange={(event) => setSearchedDescription(event.target.value)}
+              />
+            </div>
+            <div className="control-panel__actions-buttons">
+              <button
+                className="btn btn-warning"
+                value={INCOME}
+                onClick={createExpense}
+              >
+                Create income
+              </button>
+              <button
+                className="btn btn-danger create-outcome"
+                value={OUTCOME}
+                onClick={createExpense}
+              >
+                Create outcome
+              </button>
+            </div>
           </div>
           <table className="table">
             <thead>
