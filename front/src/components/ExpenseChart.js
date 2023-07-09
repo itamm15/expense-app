@@ -1,16 +1,12 @@
-import Chart from "chart.js/auto";
+import "chart.js/auto";
 import currency from "currency.js";
+import "../styles/ExpenseChart.scss";
 import { Bar } from "react-chartjs-2";
 import { INCOME } from "../constants/expenseTypes";
 import { getMonthName } from "../Utils";
 
 const ExpenseChart = (expensesList) => {
   const { incomeSum, outcomeSum } = sumExpensesByDateAndType(expensesList);
-  const chartStyles = {
-    display: "flex",
-    justifyContent: "center",
-    height: "300px",
-  };
   const data = {
     labels: [
       "january",
@@ -36,20 +32,20 @@ const ExpenseChart = (expensesList) => {
       {
         label: "Outcome",
         data: outcomeSum,
-        fill: false,
+        fill: true,
         backgroundColor: "red",
       },
     ],
   };
   return (
-    <div style={chartStyles}>
+    <div className="expense-chart__display-chart">
       <Bar data={data} height={300} width={1000} />
     </div>
   );
 };
 
 const sumExpensesByDateAndType = (expenses) => {
-  let monthlySums = {
+  const monthlySums = {
     january: currency(0),
     february: currency(0),
     march: currency(0),
@@ -63,14 +59,13 @@ const sumExpensesByDateAndType = (expenses) => {
     november: currency(0),
     december: currency(0),
   };
-  let incomeSum = { ...monthlySums };
-  let outcomeSum = { ...monthlySums };
+  const incomeSum = { ...monthlySums };
+  const outcomeSum = { ...monthlySums };
 
-  expenses.expensesList.map((expense) => {
-    let month = expense.date.split("-");
+  expenses.expensesList.map(({ date, amount, type }) => {
+    let month = date.split("-");
     month = getMonthName(month[1]).toLowerCase();
-    let amount = expense.amount;
-    return expense.expenseType === INCOME
+    return type === INCOME
       ? (incomeSum[month] = incomeSum[month].add(currency(amount)))
       : (outcomeSum[month] = outcomeSum[month].add(currency(amount)));
   });

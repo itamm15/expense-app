@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CREATED } from "../constants/actions";
 import { useUser } from "../context/userContext";
-import CreateUser from "../hooks/user/CreateUser";
+import createUser from "../hooks/user/createUser";
 import "../styles/Register.scss";
 import { setUserSession } from "../Utils";
 
@@ -29,7 +29,7 @@ const Register = () => {
       lastname: lastname,
       birthdate: birthdate,
     };
-    CreateUser(newUser, setUserSession).then(({ response, errors, values }) => {
+    createUser(newUser, setUserSession).then(({ response, errors, values }) => {
       if (response === CREATED) {
         setSession(values);
         navigate("/");
