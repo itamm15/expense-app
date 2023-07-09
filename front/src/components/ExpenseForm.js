@@ -71,7 +71,7 @@ const ExpenseForm = ({
 
   return (
     <ReactModal isOpen={isModalOpen} style={styleModal} ariaHideApp={false}>
-      <h3 style={{ textAlign: "center" }}>Create income/outcome</h3>
+      <h3 style={{ textAlign: "center" }}>Create {expenseType}</h3>
       <form>
         <div className="form-group">
           <label key="Amount">Amount</label>
