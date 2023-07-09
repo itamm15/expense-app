@@ -97,6 +97,12 @@ const ExpenseList = ({ expensesList }) => {
               >
                 Create outcome
               </button>
+              <ExpenseForm
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                expenseType={expenseType}
+                actionType={actionType}
+              />
             </div>
           </div>
           <table className="table">

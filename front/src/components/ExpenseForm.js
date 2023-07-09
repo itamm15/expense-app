@@ -5,6 +5,7 @@ import { UPDATE } from "../constants/actions";
 import createExpense from "../hooks/expense/createExpense";
 import updateExpense from "../hooks/expense/updateExpense";
 import { useUser } from "../context/userContext";
+import "../styles/ExpenseForm.scss";
 
 const styleModal = {
   content: {
@@ -12,13 +13,6 @@ const styleModal = {
     width: "400px",
     height: "375px",
   },
-};
-
-const styleSubmitAndCloseButton = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-evenly",
-  marginTop: "20px",
 };
 
 const ExpenseForm = ({
@@ -109,7 +103,7 @@ const ExpenseForm = ({
             onChange={(event) => setExpenseDate(event.target.value)}
           />
         </div>
-        <div style={styleSubmitAndCloseButton}>
+        <div className="expense-form__actions-buttons">
           <button
             type="submit"
             className="btn btn-primary"
