@@ -16,6 +16,7 @@ defmodule ExpenseAppWeb.AssessmentController do
     case Assessment.create_expense(params) do
       {:ok, created_expense} ->
         created_expense = format_money_type(created_expense)
+
         conn
         |> put_status(201)
         |> json(created_expense)
