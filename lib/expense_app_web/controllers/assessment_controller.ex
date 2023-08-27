@@ -41,6 +41,7 @@ defmodule ExpenseAppWeb.AssessmentController do
         conn
         |> put_status(201)
         |> json(updated_expense)
+
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_status(400)
