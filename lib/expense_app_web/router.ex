@@ -18,6 +18,7 @@ defmodule ExpenseAppWeb.Router do
 
     get "/expenses/:user_id", AssessmentController, :index
     post "/expenses", AssessmentController, :create
+    put "/expenses/:id", AssessmentController, :update
     delete "/expenses/:id", AssessmentController, :delete
 
     post "/users", GuestController, :create

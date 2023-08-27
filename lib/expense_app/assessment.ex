@@ -9,5 +9,6 @@ defmodule ExpenseApp.Assessment do
   defdelegate get_expenses_for_user(user_id), to: Expenses
   defdelegate list_expenses, to: Expenses
   defdelegate create_expense(expense), to: Expenses
+  defdelegate update_expense(expense, params), to: Expenses
   defdelegate delete_expense(expense), to: Expenses
 end
