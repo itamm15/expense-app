@@ -7,7 +7,7 @@ export default async function updateExpense(
   await fetch(`/expenses/${expensesToUpdateId}`, {
     method: "PUT",
     headers: { "Content-type": "application/json" },
-    body: JSON.stringify(newExpense),
+    body: JSON.stringify({ id: expensesToUpdateId, params: newExpense }),
   })
     .then((response) => response.json())
     .then((parsedExpense) => {

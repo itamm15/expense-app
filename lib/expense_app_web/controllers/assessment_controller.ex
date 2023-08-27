@@ -29,6 +29,27 @@ defmodule ExpenseAppWeb.AssessmentController do
     end
   end
 
+  @spec update(Plug.Conn.t(), Plug.Conn.params()) :: Plug.Conn.t()
+  def update(conn, %{"id" => id, "params" => params}) do
+    id
+    |> Assessment.get_expense()
+    |> Assessment.update_expense(params)
+    |> case do
+      {:ok, %Expense{} = expense} ->
+        updated_expense = format_money_type(expense)
+
+        conn
+        |> put_status(201)
+        |> json(updated_expense)
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_status(400)
+        |> put_view(ExpenseAppWeb.ErrorView)
+        |> render("error.json", changeset: changeset)
+    end
+  end
+
   @spec delete(Plug.Conn.t(), Plug.Conn.params()) :: Plug.Conn.t()
   def delete(conn, %{"id" => id}) do
     case Assessment.delete_expense(id) do
@@ -49,7 +70,7 @@ defmodule ExpenseAppWeb.AssessmentController do
 
   @spec format_money_type([Expense.t()] | Expense.t()) :: [Expense.t()] | Expense.t()
   defp format_money_type(expenses_list) when is_list(expenses_list) do
-    Enum.map(expenses_list, &format_money_type(&1))
+    Enum.map(expenses_list, &format_money_type/1)
   end
 
   defp format_money_type(%Expense{} = expense) do

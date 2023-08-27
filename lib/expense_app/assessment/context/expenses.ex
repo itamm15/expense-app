@@ -34,6 +34,13 @@ defmodule ExpenseApp.Context.Expenses do
     |> Repo.insert()
   end
 
+  @spec update_expense(Expense.t(), map()) :: {:ok, Expense.t()} | {:error, Ecto.Changeset.t()}
+  def update_expense(%Expense{} = expense, params) do
+    expense
+    |> Expense.changeset(params)
+    |> Repo.update()
+  end
+
   @spec delete_expense(Expense.t() | Expense.id()) ::
           {:ok, Expense.t()} | {:error, Ecto.Changeset.t()}
   def delete_expense(id) when is_binary(id) do
