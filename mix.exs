@@ -53,7 +53,8 @@ defmodule ExpenseApp.MixProject do
       {:cors_plug, "~> 3.0"},
       {:excellent_migrations, "~> 0.1", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
+      {:contexted, "~> 0.1.9"}
     ]
   end
 
