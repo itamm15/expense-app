@@ -3,7 +3,9 @@ defmodule ExpenseApp.Guest do
   Module responsible for handling user.
   """
 
+  import Contexted.Delegator
+
   alias ExpenseApp.Context.Users
 
-  defdelegate create_user(user), to: Users
+  delegate_all(Users)
 end
