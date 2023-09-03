@@ -1,3 +1,7 @@
+$form-frame: #0586fd;
+$input-frames: rgb(79, 69, 69);
+$placeholder-color: rgb(240, 229, 229);
+
 .login {
   display: flex;
   justify-content: center;
@@ -16,7 +20,7 @@
   height: 320px;
   width: 400px;
   border-radius: 10px;
-  border: 1px solid #0586fd;
+  border: 1px solid $form-frame;
   box-shadow: 0 0 2px;
   background-color: transparent;
   backdrop-filter: blur(35px);
@@ -38,12 +42,12 @@
   height: 40px;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid rgb(79, 69, 69);
+  border-bottom: 1px solid $input-frames;
   color: white;
 }
 
 .login--input::placeholder {
-  color: rgb(240, 229, 229);
+  color: $placeholder-color;
 }
 
 .login--input:focus {
