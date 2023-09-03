@@ -1,0 +1,74 @@
+$form-frame: #0586fd;
+$input-frames: rgb(79, 69, 69);
+$placeholder-color: rgb(240, 229, 229);
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 100vh;
+  color: white;
+  background: url("../../public/images/login_page.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login__form {
+  display: block;
+  height: 320px;
+  width: 400px;
+  border-radius: 10px;
+  border: 1px solid $form-frame;
+  box-shadow: 0 0 2px;
+  background-color: transparent;
+  backdrop-filter: blur(35px);
+}
+
+.login__form-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login__form-input {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.login--input {
+  width: 90%;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid $input-frames;
+  color: white;
+}
+
+.login--input::placeholder {
+  color: $placeholder-color;
+}
+
+.login--input:focus {
+  outline: none;
+}
+
+.login--input__submit {
+  width: 90%;
+  margin-top: 10px;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.login__form-register {
+  text-align: center;
+}
+
+.login__form-register-route {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}

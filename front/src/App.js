@@ -4,7 +4,6 @@ import useExpenses from "./context/expenseContext";
 import ExpenseChart from "./components/ExpenseChart";
 import history from "history/browser";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
-import { useState } from "react";
 import { useUser } from "./context/userContext";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -15,7 +14,7 @@ function App() {
 
   const RequireLogged = () => {
     if (session === undefined) {
-      return <Navigate to="/register" replace />;
+      return <Navigate to="/login" replace />;
     }
     return <Outlet />;
   };
