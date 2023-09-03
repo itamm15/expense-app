@@ -43,9 +43,18 @@
 }
 
 .login--input::placeholder {
-  color: white;
+  color: rgb(240, 229, 229);
 }
 
 .login--input:focus {
   outline: none;
+}
+
+.login--input__submit {
+  width: 90%;
+  margin-top: 10px;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
 }

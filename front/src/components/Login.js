@@ -23,8 +23,12 @@ const Login = () => {
             required
           />
         </div>
-        <div className="login__form-submit">
-          <button type="submit">Login</button>
+        <div className="login__form-input">
+          <input
+            type="submit"
+            placeholder="submit"
+            className="login--input__submit"
+          />
         </div>
       </div>
     </div>
