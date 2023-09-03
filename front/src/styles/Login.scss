@@ -13,13 +13,13 @@
 
 .login__form {
   display: block;
-  height: 350px;
+  height: 320px;
   width: 400px;
   border-radius: 10px;
   border: 1px solid #0586fd;
   box-shadow: 0 0 2px;
   background-color: transparent;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(35px);
 }
 
 .login__form-title {
@@ -38,7 +38,7 @@
   height: 40px;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #0586fd;
+  border-bottom: 1px solid rgb(79, 69, 69);
   color: white;
 }
 
@@ -57,4 +57,14 @@
   background-color: white;
   border: none;
   border-radius: 10px;
+}
+
+.login__form-register {
+  text-align: center;
+}
+
+.login__form-register-route {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }

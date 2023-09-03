@@ -30,6 +30,14 @@ const Login = () => {
             className="login--input__submit"
           />
         </div>
+        <div className="login__form-register">
+          <p>
+            Don't have an account?
+            <a href="/register" className="login__form-register-route">
+              Register
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
