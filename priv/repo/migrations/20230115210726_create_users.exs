@@ -6,6 +6,8 @@ defmodule ExpenseApp.Repo.Migrations.CreateUsers do
       add :firstname, :string, null: false
       add :lastname, :string, null: false
       add :birthdate, :date, null: false
+      add :email, :string, null: false
+      add :password_hash, :string
       add :currency, :string, null: true, default: "PLN"
 
       timestamps()
