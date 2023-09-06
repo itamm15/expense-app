@@ -1,21 +1,27 @@
 defmodule ExpenseAppWeb.GuestController do
   use ExpenseAppWeb, :controller
 
-  alias ExpenseApp.Guest
+  alias Ecto.Changeset
+  alias Plug.Conn
+  alias ExpenseAppWeb.ErrorHelpers
 
-  @spec create(Plug.Conn.t(), Plug.Conn.params()) :: Plug.Conn.t()
-  def create(conn, params) do
-    case Guest.create_user(params) do
-      {:ok, created_user} ->
-        conn
-        |> put_status(201)
-        |> json(created_user)
+  @spec create(Conn.t(), map()) :: Conn.t()
+  def create(conn, %{"user" => user_params}) do
+    case Pow.Plug.create_user(conn, user_params) do
+      {:ok, _user, conn} ->
+        json(conn, %{
+          data: %{
+            access_token: conn.private.api_access_token,
+            renewal_token: conn.private.api_renewal_token
+          }
+        })
 
-      {:error, %Ecto.Changeset{} = changeset} ->
+      {:error, changeset, conn} ->
+        errors = Changeset.traverse_errors(changeset, &ErrorHelpers.translate_error/1)
+
         conn
-        |> put_status(400)
-        |> put_view(ExpenseAppWeb.ErrorView)
-        |> render("error.json", changeset: changeset)
+        |> put_status(500)
+        |> json(%{error: %{status: 500, message: "Couldn't create user", errors: errors}})
     end
   end
 end
