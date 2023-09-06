@@ -29,6 +29,10 @@ config :phoenix, :json_library, Jason
 
 config :money, default_currency: :EUR, separator: ".", delimiter: "."
 
+config :expense_app, :pow,
+  user: ExpenseApp.User,
+  repo: ExpenseApp.Repo
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
