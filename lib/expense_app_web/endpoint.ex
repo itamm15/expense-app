@@ -42,6 +42,9 @@ defmodule ExpenseAppWeb.Endpoint do
     key: "_expense_app_key",
     signing_salt: "9I8VAC0S"
 
+  plug Pow.Plug.Session,
+    otp_app: :expense_app
+
   plug CORSPlug
   plug ExpenseAppWeb.Router
 end
